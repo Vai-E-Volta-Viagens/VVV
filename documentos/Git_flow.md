@@ -1,6 +1,6 @@
 # PASSO A PASSO - GIT FLOW
 
-Importante: qualquer branch pode ser apagada com: git branch -D <nome da branch>
+Importante: qualquer branch pode ser apagada com: ``git branch -D <nome da branch>``
 
 Essa organização é majoritáriamente local. Quase tudo isso vai ocorrer apenas do seu pc. Apenas quando a alteração for para a main você pode realizar o push para o github.
 
@@ -76,6 +76,8 @@ OBS: Caso alguém queira te ajudar nesse hotfix, faça:  git flow hotfix publish
 
 Ao finalizar a alteração, o finish irá enviar a alteração para a develop e para a main: ``git flow hotfix finish <nova versão>``
 
-# Enviando sua branch develop e main para o github: ``git push --all``
+# Enviando sua branch develop e main para o github: 
+
+Basta executar: ``git push --all``
 
 OBS: Lembre-se de ter finalizado todas as branch feature, release e hotfix. Isso porque essas branch devem ser temporárias e locais, enviá-las para o github sem querer irá poluir o ambiente.
