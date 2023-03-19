@@ -2,7 +2,7 @@
 
 Importante: qualquer branch pode ser apagada com: ``git branch -D <nome da branch>``
 
-Essa organização é majoritáriamente local. Quase tudo isso vai ocorrer apenas do seu pc. Apenas quando a alteração for para a main você pode realizar o push para o github.
+Essa organização é majoritáriamente local. Quase tudo isso vai ocorrer apenas do seu pc. Apenas quando a alteração for para a main você pode realizar o push para o github enviando as branches ``develop`` e ``main``.
 
 ## Criando o git flow
 
