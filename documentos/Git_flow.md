@@ -9,7 +9,7 @@ Essa organização é majoritáriamente local. Quase tudo isso vai ocorrer apena
 >>>>>>>>>>>>> Branch atual: main
 
 Vá para o diretório do projeto com o git bash e execute: 
-git flow init
+``git flow init``
 
 (Dê enter em tudo)
 
@@ -23,16 +23,15 @@ Nessa branch que você pode realizer os seus desenvolvimentos.
 >>>>>>>>>>>>> Branch atual: develop
 
 Como criar uma feature para um desenvolvimento:
-git flow feature start <nome>
+``git flow feature start < nome >``
 
 >>>>>>>>>>>>> Branch atual: feature/< nome >
 
 Para monitorar TODOS os arquivos novos e já pôr eles no staged para um commit:
-git add .
+``git add .``
 
 Processo de commit na feature é como em qualquer outro: 
-git commit -m "<mensagem>"
-
+``git commit -m "< mensagem >"``
 OBS: Caso alguém queira te ajudar nessa feature, faça:  git flow feature publish <nome>
 
 Importante: Não finalize a branch feature sem fazer o committ de todas as alterações.
@@ -47,16 +46,16 @@ A branch release serve para o ambiente de testes e pequenas correções. Aqui vo
 >>>>>>>>>>>>> Branch atual: develop
 
 Quando um desenvolvimento for finalizado e puder ser testado:
-git flow release start <versão>
+git flow release start < versão >
 
->>>>>>>>>>>>> Branch atual: release/<versão>
+>>>>>>>>>>>>> Branch atual: release/< versão >
 
 OBS: Caso alguém queira te ajudar nesse release, faça:  git flow release publish <versão>
 
-Se o projeto estiver funcionando bem, essa ação mandará suas alterações para a main e apagará essa branch release/<versão> (se modificou algo na branch release/<versão> o flow também mandará para a develop):
+Se o projeto estiver funcionando bem, essa ação mandará suas alterações para a main e apagará essa branch release/<versão> (se modificou algo na branch release/< versão > o flow também mandará para a develop):
 git flow release finish <versão>
 
-Essa <versão> se tornará a tag da main e da develop
+Essa < versão > se tornará a tag da main e da develop
 
 #### O git pedirá para escrever um pequeno texto nessa tag. A ideia é, resumidamente, escrever o que foi desenvolvido nessa versão.
 
@@ -77,7 +76,7 @@ Para monitorar TODOS os arquivos novos e já pôr eles no staged para um commit:
 git add .
 
 Processo de commit na hotfix é como em qualquer outro: 
-git commit -m "<mensagem>"
+git commit -m "< mensagem >"
 
 OBS: Caso alguém queira te ajudar nesse hotfix, faça:  git flow hotfix publish <nova versão>
 
