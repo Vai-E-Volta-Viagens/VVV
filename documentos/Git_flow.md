@@ -25,7 +25,7 @@ Nessa branch que você pode realizer os seus desenvolvimentos.
 Como criar uma feature para um desenvolvimento:
 git flow feature start <nome>
 
->>>>>>>>>>>>> Branch atual: feature/<nome>
+>>>>>>>>>>>>> Branch atual: feature/< nome >
 
 Para monitorar TODOS os arquivos novos e já pôr eles no staged para um commit:
 git add .
