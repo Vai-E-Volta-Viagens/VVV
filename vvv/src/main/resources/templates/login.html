@@ -5,24 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
-    <!-- Remix icons -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <title>VVV - Login</title>
 </head>
 <body>
     
     <main id="mainLogin">
 
-        <div class="divForm formCad"></div>
-        <div class="divForm formLog">
-            <div id="divTitle">
-                <h1 clas="titleForm titleLog">LOGIN</h1>
+        <div class="divForm formCad">
+            <img src="./logo/logo-editor.svg" alt="Vai & Volta Viagens" id="logo"> 
+            <div class="divTitle divCad">
+                <h1 class="titleForm titleCad">CADASTRE-SE</h1>
+                <p id="pCad">Insira seus dados pessoais e comece a viajar conosco!</p>
             </div>
-            <form action="">
+            <button type="submit" class="btn btnCad">
+                <div class="wrapper">
+                    <i class="bi bi-send"></i>
+                </div>
+                <span>Cadastre-se</span>
+            </button>
+        </div>
+        <div class="divForm formLog">
+            <div class="divTitle divLog">
+                <h1 class="titleForm titleLog">LOGIN</h1>
+            </div>
+            <form action="" class="form">
 
-                <input type="text" name="email" id="email" class="inpLog inpEmail">
-                <input type="text" name="password" id="password" class="inpLog inpPassword">
-                <button type="submit" id="btnEntrar">Entrar<i class="ri-arrow-right-line"></i></button>
+                <div id="socialLogin">
+                    <!-- <div class="socialIcons iconFacebook"><i class="bi bi-facebook"></i></div> -->
+                    <i class="bi bi-facebook"></i>
+                    <i class="bi bi-google"></i>
+                    <i class="bi bi-linkedin"></i>
+                </div>
+                
+                <label class="label-input" for="">
+                    <i class="far fa-envelope icon-modify"></i>
+                    <input type="email" placeholder="Email">
+                </label>
+                
+                <label class="label-input" for="">
+                    <i class="fas fa-lock icon-modify"></i>
+                    <input type="password" placeholder="Senha">
+                </label>
+
+                <button type="submit" class="btn btnEntrar">
+                    <div class="wrapper">
+                        <i class="bi bi-send"></i>
+                    </div>
+                    <span>Entrar</span>
+                </button>
 
             </form>
         </div>
