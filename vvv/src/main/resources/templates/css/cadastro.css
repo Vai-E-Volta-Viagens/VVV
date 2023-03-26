@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+:root {
+
+	--cor-principal: #8c9cf3;
+	--cor-social-icons: #7f8c8d;
+
+}
+
+* {
+	
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	
+}
+
+body {
+
+	font-family: 'Open Sans', sans-serif;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #e0e0e0;
+
+}
+
+#mainLogin {
+
+	width: 75vw;
+	height: 70vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--cor-principal);
+	border-radius: 10px;
+
+}
+
+.divTitle {
+
+	width: 100%;
+	height: 15%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+}
+
+.divLog {
+
+    height: 10%;
+    margin-bottom: 2%;
+
+}
+
+.divCad {
+
+	margin-top: 5%;
+	margin-bottom: 5%;
+
+}
+
+.titleLog {
+
+	color: var(--cor-principal);
+
+}
+
+.titleCad {
+
+	color: white;
+	font-size: 25px;
+
+}
+
+#pCad {
+
+	text-align: center;
+	color: #A0D7FF;
+	margin-top: 2%;
+    margin-left: 4%;
+    margin-right: 4%;
+
+}
+
+#logo {
+
+	width: 100%;
+	height: 35%;
+	/* Zoom na Logo */
+	-moz-transform: scale(1.9);
+  	-webkit-transform: scale(1.9);
+  	transform: scale(1.9);
+
+}
+
+#socialLogin {
+
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 4%;
+	z-index: 5;
+}
+
+.bi-facebook {
+
+	font-size: 18px;
+	padding: 10px;
+	border: 1px solid var(--cor-social-icons);
+	border-radius: 7px 0px 0px 7px;
+	color: var(--cor-social-icons);
+	cursor: pointer;
+	transition: .5s;
+
+}
+
+.bi-google {
+
+	font-size: 18px;
+	padding: 10px;
+	border: 1px solid var(--cor-social-icons);
+	border-left: none;
+	border-right: none;
+	color: var(--cor-social-icons);
+	cursor: pointer;
+	transition: .5s;
+
+}
+
+.bi-linkedin {
+
+	font-size: 18px;
+	padding: 10px;
+	border: 1px solid var(--cor-social-icons);
+	border-radius: 0px 7px 7px 0px;
+	color: var(--cor-social-icons);
+	cursor: pointer;
+	transition: .5s;
+
+}
+
+.bi-facebook:hover, .bi-google:hover, .bi-linkedin:hover {
+
+	color: white;
+	background-color: var(--cor-principal);
+
+}
+
+#dados {
+
+    display: flex;
+    width: 100%;
+
+}
+
+.auxDados {
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.auxDadosP {
+
+    width: 100%;
+    margin-left: 5%;
+    margin-right: 5%;
+
+}
+
+.auxDadosS {
+
+    margin-right: 5%;
+
+}
+
+.form input, .form select {
+    height: 45px;
+    width: 100%;
+    border: none;
+    background-color: #ecf0f1;
+	outline: none;
+    color: #687374;
+}
+
+input:-webkit-autofill {    
+	-webkit-box-shadow: 0 0 0px 1000px #ecf0f1 inset !important;
+	-webkit-text-fill-color: #000 !important;
+}
+
+.label-input {
+    background-color: #ecf0f1;
+	width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4%;
+	padding-right: 1%;
+	z-index: 5;
+}
+
+.icon-modify {
+    color: #7f8c8d;
+    padding: 0 5px;
+	margin-left: 1.5%;
+	margin-right: 1.5%;
+}
+
+.divForm {
+
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+
+}
+
+.formLog {
+
+	background-color: #fff;
+	width: 100%;
+	border-radius: 0px 10px 10px 0px;
+
+}
+
+.formCad {
+
+	width: 70%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px 0px 0px 10px;
+	background-color: var(--cor-principal);
+
+}
+
+form {
+
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+}
+
+.btn {
+
+	font-size: 1.25rem;
+	background: var(--cor-principal);
+	color: white;
+	padding: 0.7em 1em;
+	padding-left: 0.9em;
+	margin-top: 5%;
+	display: flex;
+	align-items: center;
+	border: none;
+	border-radius: 16px;
+	overflow: hidden;
+	transition: all 0.2s;
+	cursor: pointer;
+
+}
+
+.btnEntrar {
+
+    margin-top: 2%;
+
+}
+
+.btnCad {
+
+	margin-top: 7%;
+	background-color: white;
+	color: var(--cor-principal);
+
+}
+
+.btn span {
+
+	display: block;
+	margin-left: 0.3em;
+	transition: all 0.3s ease-in-out;
+
+}
+
+.btn i {
+
+	display: block;
+	transform-origin: center center;
+	transition: transform 0.3s ease-in-out;
+
+}
+
+.btn:hover .wrapper {
+
+	animation: fly 0.6s ease-in-out infinite alternate;
+
+}
+
+.btn:hover i {
+	transform: translateX(3em) rotate(45deg) scale(1.1);
+}
+
+.btnCad:hover i {
+	transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+.btn:hover span {
+	transform: translateX(7em);
+}
+
+.btnCad:hover span {
+	transform: translateX(5em);
+}
+
+.btn:active {
+	transform: scale(0.95);
+}
+
+@keyframes fly {
+	from {
+		transform: translateY(0.1em);
+	}
+
+	to {
+		transform: translateY(-0.1em);
+	}
+}
