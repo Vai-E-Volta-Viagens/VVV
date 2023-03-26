@@ -3,7 +3,7 @@
 :root {
 
 	--cor-principal: #8c9cf3;
-	--cor-social-icons: rgb(148, 144, 144);
+	--cor-social-icons: #7f8c8d;
 
 }
 
@@ -104,7 +104,8 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-bottom: 2%;
+	margin-bottom: 4%;
+	z-index: 5;
 }
 
 .bi-facebook {
@@ -162,7 +163,6 @@ body {
 
     width: 100%;
     display: flex;
-    /* align-items: center; */
     flex-direction: column;
 
 }
@@ -201,6 +201,8 @@ input:-webkit-autofill {
     display: flex;
     align-items: center;
     margin-bottom: 4%;
+	padding-right: 1%;
+	z-index: 5;
 }
 
 .icon-modify {

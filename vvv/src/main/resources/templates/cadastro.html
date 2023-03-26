@@ -20,7 +20,7 @@
                 <h1 class="titleForm titleCad">FAÇA O LOGIN</h1>
                 <p id="pCad">Para manter-se conectado conosco, por favor, faça o login com sua conta pessoal.</p>
             </div>
-            <button type="submit" class="btn btnCad">
+            <button type="submit" class="btn btnCad" onclick="window.location.href = 'login.html'">
                 <div class="wrapper">
                     <i class="bi bi-send"></i>
                 </div>
@@ -43,16 +43,6 @@
                     <div class="auxDados auxDadosP">
 
                         <label class="label-input" for="">
-                            <i class="fas fa-file-signature icon-modify"></i>
-                            <input type="nome" placeholder="Primeiro Nome" name="pNome">
-                        </label>
-
-                        <label class="label-input" for="">
-                            <i class="fas fa-file-signature icon-modify"></i>
-                            <input type="sobrenome" placeholder="Sobrenome" name="sobrenome">
-                        </label>
-
-                        <label class="label-input" for="">
                             <i class="far fa-envelope icon-modify"></i>
                             <input type="email" placeholder="Email" name="email">
                         </label>
@@ -60,6 +50,16 @@
                         <label class="label-input" for="">
                             <i class="fas fa-lock icon-modify"></i>
                             <input type="password" placeholder="Senha" name="senha">
+                        </label>
+                        
+                        <label class="label-input" for="">
+                            <i class="fas fa-file-signature icon-modify"></i>
+                            <input type="nome" placeholder="Primeiro Nome" name="pNome">
+                        </label>
+
+                        <label class="label-input" for="">
+                            <i class="fas fa-file-signature icon-modify"></i>
+                            <input type="sobrenome" placeholder="Sobrenome" name="sobrenome">
                         </label>
 
                         <label class="label-input" for="">
@@ -104,18 +104,18 @@
                         
                         <label class="label-input" for="">
                             <i class="fas fa-city icon-modify"></i>
-                            <input type="text" placeholder="Estado" name="estado">
+                            <input type="estado" placeholder="Estado" name="estado">
                         </label>
 
                         <label class="label-input" for="">
                             <i class="fas fa-city icon-modify"></i>
-                            <input type="text" placeholder="Cidade" name="cidade">
+                            <input type="endereco" placeholder="Endereço" name="cidade">
                         </label>
 
                         <label class="label-input" for="">
                             <i class="fas fa-city icon-modify"></i>
                             <select name="uf" id="uf">
-                                <option value="" disabled selected>Selecione</option>
+                                <option value="" disabled selected>UF</option>
                                 <option value="AC">AC</option>
                                 <option value="AL">AL</option>
                                 <option value="AM">AM</option>

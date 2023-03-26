@@ -15,12 +15,14 @@
     <main id="mainLogin">
 
         <div class="divForm formCad">
-            <img src="./logo/logo-editor.svg" alt="Vai & Volta Viagens" id="logo"> 
+            <div id="divLogo">
+                <img src="./logo/logo-editor.svg" alt="Vai & Volta Viagens" id="logo">
+            </div>
             <div class="divTitle divCad">
                 <h1 class="titleForm titleCad">CADASTRE-SE</h1>
                 <p id="pCad">Insira seus dados pessoais e comece a viajar conosco!</p>
             </div>
-            <button type="submit" class="btn btnCad">
+            <button type="submit" class="btn btnCad" onclick="window.location.href = 'cadastro.html'">
                 <div class="wrapper">
                     <i class="bi bi-send"></i>
                 </div>
@@ -41,12 +43,12 @@
                 
                 <label class="label-input" for="">
                     <i class="far fa-envelope icon-modify"></i>
-                    <input type="email" placeholder="Email" name="email">
+                    <input type="email" placeholder="Email" name="email" class="inp email">
                 </label>
                 
                 <label class="label-input" for="">
                     <i class="fas fa-lock icon-modify"></i>
-                    <input type="password" placeholder="Senha" name="senha">
+                    <input type="password" placeholder="Senha" name="senha" class="inp senha">
                 </label>
 
                 <button type="submit" class="btn btnEntrar">
