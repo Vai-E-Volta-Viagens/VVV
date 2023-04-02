@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/cadastro.css">
+    <link th:href="@{/css/cadastro.css}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -20,18 +22,20 @@
                 <h1 class="titleForm titleCad">FAÇA O LOGIN</h1>
                 <p id="pCad">Para manter-se conectado conosco, por favor, faça o login com sua conta pessoal.</p>
             </div>
-            <button type="submit" class="btn btnCad" onclick="window.location.href = 'login.html'">
-                <div class="wrapper">
-                    <i class="bi bi-send"></i>
-                </div>
-                <span>Entrar</span>
-            </button>
+            <form action="/login" method="get">
+	            <button type="submit" class="btn btnCad" onclick="window.location.href = 'login.html'">
+	                <div class="wrapper">
+	                    <i class="bi bi-send"></i>
+	                </div>
+	                <span>Entrar</span>
+	            </button>
+            </form>
         </div>
         <div class="divForm formLog">
             <div class="divTitle divLog">
                 <h1 class="titleForm titleLog">CADASTRE-SE</h1>
             </div>
-            <form action="" class="form">
+            <form action="/realizar-cadastro" class="form" th:object="${cadastro}" method="post">
 
                 <div id="socialLogin">
                     <i class="bi bi-facebook"></i>
@@ -44,24 +48,25 @@
 
                         <label class="label-input" for="">
                             <i class="far fa-envelope icon-modify"></i>
-                            <input type="email" placeholder="Email" name="email">
+                            <input type="email" placeholder="Email" name="email" th:field="*{login.emailLogin}" required>
+                        </label>
+                        
+                        
+                        <label class="label-input" for="">
+                            <i class="fas fa-file-signature icon-modify"></i>
+                            <input type="text" placeholder="Primeiro Nome" name="pNome" th:field="*{primeiroNome}" required>
+                        </label>
+                        
+                        <label class="label-input" for="">
+                            <i class="fas fa-file-signature icon-modify"></i>
+                            <input type="text" placeholder="Sobrenome" name="sobrenome" th:field="*{sobrenome}" required>
                         </label>
                         
                         <label class="label-input" for="">
                             <i class="fas fa-lock icon-modify"></i>
-                            <input type="password" placeholder="Senha" name="senha">
+                            <input type="password" placeholder="Senha" name="senha" th:field="*{login.senhaLogin}" required>
                         </label>
-                        
-                        <label class="label-input" for="">
-                            <i class="fas fa-file-signature icon-modify"></i>
-                            <input type="nome" placeholder="Primeiro Nome" name="pNome">
-                        </label>
-
-                        <label class="label-input" for="">
-                            <i class="fas fa-file-signature icon-modify"></i>
-                            <input type="sobrenome" placeholder="Sobrenome" name="sobrenome">
-                        </label>
-
+                        <!--
                         <label class="label-input" for="">
                             <i class="fas fa-address-card icon-modify"></i>
                             <input type="identidade" placeholder="Identidade" name="rg">
@@ -76,9 +81,10 @@
                             <i class="fas fa-address-card icon-modify"></i>
                             <input type="nacionalidade" placeholder="Nacionalidade" name="nacionalidade">
                         </label>
+                        -->
 
                     </div>
-
+                    <!--
                     <div class="auxDados auxDadosS">
 
                         <label class="label-input" for="">
@@ -152,6 +158,7 @@
                         </label>
                     </div>
                 </div>
+                -->
 
                 <button type="submit" class="btn btnEntrar">
                     <div class="wrapper">
@@ -159,6 +166,8 @@
                     </div>
                     <span>Cadastre-se</span>
                 </button>
+                
+                <span th:text="${ExistingRegistration}" th:if="${ExistingRegistration != null}"></span>
 
             </form>
         </div>
