@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Insert title here</title>
+</head>
+<body>
+	<form action="/bem-vindo" method="post">
+		<h1>Bem-vindo <span th:text="${username}"></span>!</h1>
+	</form>
+</body>
+</html>
