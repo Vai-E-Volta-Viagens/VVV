@@ -28,6 +28,9 @@ public class Cadastro {
 	@Column(name = "id_cadastro", unique = true)
 	private Long idCadastro;
 	
+	@Column(name = "codigo_passageiro", unique = true)
+	private Long codigoPassageiro;
+	
 	@ManyToOne
 	@JoinColumn(name = "fk_login")
 	private Login login;
@@ -42,14 +45,15 @@ public class Cadastro {
 	@Column(name = "sobrenomePassageiro", nullable = false, length = 100)
 	private String sobrenome;
 	
-	@Column(name = "data_de_cadastro", nullable = false)
+	@Column(name = "data_de_cadastro")
 	private LocalDateTime dataDeCadastro;
 	
 	
 	public Cadastro() {}
-	public Cadastro(Long idCadastro, Login login, Passageiro passageiro, String primeiroNome,
+	public Cadastro(Long idCadastro, Long codigoPassageiro,Login login, Passageiro passageiro, String primeiroNome,
 			String sobrenome, LocalDateTime dataDeCadastro) {
 		this.idCadastro = idCadastro;
+		this.codigoPassageiro = codigoPassageiro;
 		this.login = login;
 		this.passageiro = passageiro;
 		this.primeiroNome = primeiroNome;

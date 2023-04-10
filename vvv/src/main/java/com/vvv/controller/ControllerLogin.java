@@ -60,6 +60,7 @@ public class ControllerLogin {
 				
 				serviceLogin.save(cadastro.getLogin());
 				
+				Configuracao.GeneratingCodeForRegister(cadastro);
 				Configuracao.RegistrationDate(cadastro);
 				
 				serviceCadastro.save(cadastro);
