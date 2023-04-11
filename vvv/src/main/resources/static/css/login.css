@@ -217,7 +217,6 @@ input:-webkit-autofill {
 
 	width: 70%;
 	display: flex;
-	/* justify-content: center; */
 	align-items: center;
 	border-radius: 10px 0px 0px 10px;
 	background-color: var(--cor-principal);
@@ -255,7 +254,7 @@ form {
 	margin-top: 7%;
 	background-color: white;
 	color: var(--cor-principal);
-	width: 40%;
+	width: 100%;
 
 }
 
