@@ -5,7 +5,7 @@ import com.vvv.repository.RepositoryPassageiro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service	// Classe responsável pela conexão das classes Controller com o banco de dados Passageiro
 public class ServicePassageiro {
 	@Autowired
 	private RepositoryPassageiro repositoryPassageiro;

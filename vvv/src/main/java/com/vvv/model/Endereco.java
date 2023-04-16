@@ -17,7 +17,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 
 @Entity
-@Table(name = "tb_endereco")
+@Table(name = "tb_endereco") // Tabela Endereco responsável por salvar os dados de Endereco
 public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -21,7 +21,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 
 @Entity
-@Table(name = "tb_cadastro")
+@Table(name = "tb_cadastro") // Tabela Cadastro responsável por salvar os danos de Cadastro 
 public class Cadastro {	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

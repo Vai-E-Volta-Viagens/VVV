@@ -14,8 +14,10 @@
 </head>
 <body>
     
+    <!-- Form da tela de Cadastro -->
     <main id="mainLogin">
 
+		<!-- Tela de introdução do Form de cadastro -->
         <div class="divForm formCad">
             <img src="./logo/logo-editor.svg" alt="Vai & Volta Viagens" id="logo"> 
             <div class="divTitle divCad">
@@ -31,6 +33,8 @@
 	            </button>
             </form>
         </div>
+        
+        <!-- Tela de envio de dados do cadastro para o back-end -->
         <div class="divForm formLog">
             <div class="divTitle divLog">
                 <h1 class="titleForm titleLog">CADASTRE-SE</h1>
@@ -46,22 +50,25 @@
                 <div id="dados">
                     <div class="auxDados auxDadosP">
 
+						<!-- Entrada do email -->
                         <label class="label-input" for="">
                             <i class="far fa-envelope icon-modify"></i>
                             <input type="email" placeholder="Email" name="email" th:field="*{login.emailLogin}" required>
                         </label>
                         
-                        
+                        <!-- Entrada do primeiro nome do passageiro -->
                         <label class="label-input" for="">
                             <i class="fas fa-file-signature icon-modify"></i>
                             <input type="text" placeholder="Primeiro Nome" name="pNome" th:field="*{primeiroNome}" required>
                         </label>
                         
+                        <!-- Entrada do sobrenome do passageiro -->
                         <label class="label-input" for="">
                             <i class="fas fa-file-signature icon-modify"></i>
                             <input type="text" placeholder="Sobrenome" name="sobrenome" th:field="*{sobrenome}" required>
                         </label>
                         
+                        <!-- Entrada da senha -->
                         <label class="label-input" for="">
                             <i class="fas fa-lock icon-modify"></i>
                             <input type="password" placeholder="Senha" name="senha" th:field="*{login.senhaLogin}" required>
@@ -160,6 +167,7 @@
                 </div>
                 -->
 
+				<!-- Enviar os dados para o banco de dados -->
                 <button type="submit" class="btn btnEntrar">
                     <div class="wrapper">
                         <i class="bi bi-send"></i>
@@ -167,7 +175,10 @@
                     <span>Cadastre-se</span>
                 </button>
                 
-                <span th:text="${ExistingRegistration}" th:if="${ExistingRegistration != null}"></span>
+                <!-- Mensagem de erro em caso de cadastro inválido -->
+                <div>
+                	<span th:text="${ExistingRegistration}" th:if="${ExistingRegistration != null}"></span>
+                </div>
 
             </form>
         </div>

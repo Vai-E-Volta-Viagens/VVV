@@ -20,7 +20,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 
 @Entity
-@Table(name = "tb_passageiro")
+@Table(name = "tb_passageiro") // Tabela Passageiro responsável por salvar os dados de Passageiro
 public class Passageiro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

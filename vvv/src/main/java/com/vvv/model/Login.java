@@ -17,7 +17,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 
 @Entity
-@Table(name = "tb_login")
+@Table(name = "tb_login") // Tabela Login responsável por salvar os dados de Login
 public class Login {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
