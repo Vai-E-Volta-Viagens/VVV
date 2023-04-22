@@ -71,9 +71,14 @@
                     <span>Entrar</span>
                 </button>
 				
+<<<<<<< Updated upstream
 				<!-- Mensagem de erro em caso de Login inválido -->
 				<div>
 					<span th:text="${ErrorMessage}" th:if="${ErrorMessage != null}"></span>
+=======
+				<div class="div_error_message">
+					<span class="error_message" th:if="${ErrorMessage}">Login/Senha não identificados</span>
+>>>>>>> Stashed changes
 				</div>
             </form>
         </div>

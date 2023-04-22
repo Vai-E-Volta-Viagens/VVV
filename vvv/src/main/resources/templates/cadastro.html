@@ -175,9 +175,17 @@
                     <span>Cadastre-se</span>
                 </button>
                 
+<<<<<<< Updated upstream
                 <!-- Mensagem de erro em caso de cadastro inválido -->
                 <div>
                 	<span th:text="${ExistingRegistration}" th:if="${ExistingRegistration != null}"></span>
+=======
+                <div class="div_error_message">
+                	<span class="error_message" th:if="${ExistingRegistration}"
+                	style="margin-top: 1px; margin-left: 5px; margin-right: 5px; font-size: 10px; 
+                	padding: 0; box-sizing: border-box; color: red;"
+                	>Este email já está cadastrado em nosso sistema!</span>
+>>>>>>> Stashed changes
                 </div>
 
             </form>

@@ -46,7 +46,7 @@ public class ControllerLogin {
 			return "reserva";
 			
 		}else {
-			ra.addFlashAttribute("ErrorMessage", "Login/Senha não identificados");
+			ra.addFlashAttribute("ErrorMessage", true);
 			return "redirect:login";
 		}
 	}
@@ -59,28 +59,21 @@ public class ControllerLogin {
 	
 	// Método responsável por validar o cadastro
 	@PostMapping("/realizar-cadastro")
-	public String realizarCadastro(Login login, Cadastro cadastro, RedirectAttributes ra) {
-		if(serviceLogin.findByEmailLogin(login.getEmailLogin()) == null) {
-			if(serviceLogin.findBySenhaLogin(login.getSenhaLogin()) ==  null) {
+	public String realizarCadastro(Cadastro cadastro, RedirectAttributes ra) {
+		if(serviceLogin.findByEmailLogin(cadastro.getLogin().getEmailLogin()) == null) {
 				
-				serviceLogin.save(cadastro.getLogin());
+			serviceLogin.save(cadastro.getLogin());
 				
-				Configuracao.GeneratingCodeForRegister(cadastro);
-				Configuracao.RegistrationDate(cadastro);
+			Configuracao.GeneratingCodeForRegister(cadastro);
+			Configuracao.RegistrationDate(cadastro);
 				
-				serviceCadastro.save(cadastro);
-				System.out.println(cadastro);
+			serviceCadastro.save(cadastro);
+			System.out.println(cadastro);
 				
-				return "redirect:login";
-				
-			}else {
-				
-				ra.addFlashAttribute("ExistingRegistration", "Esta senha já está cadastrada em nosso sistema!");
-				return "cadastro";
-			}
+			return "redirect:login";
 		}
 		
-		ra.addFlashAttribute("ExistingRegistration", "Este email já está cadastrado em nosso sistema!");
-		return "cadastro";
+		ra.addFlashAttribute("ExistingRegistration", true);
+		return "redirect:cadastre-se";
 	}
 }
