@@ -43,7 +43,7 @@
             <div class="divTitle divLog">
                 <h1 class="titleForm titleLog">LOGIN</h1>
             </div>
-            <form action="/bem-vindo" class="form" th:object="${login}" method="post">
+            <form action="/bem-vindo" class="form" th:object="${passageiro}" method="post">
 
                 <div id="socialLogin">
                     <i class="bi bi-facebook"></i>
@@ -54,13 +54,13 @@
                 <!-- Entrada do email -->
                 <label class="label-input" for="">
                     <i class="far fa-envelope icon-modify"></i>
-                    <input type="email" placeholder="Email" name="email" class="inp email" th:field="*{emailLogin}" required>
+                    <input type="email" placeholder="Email" name="email" class="inp email" th:field="*{emailPassageiro}" required>
                 </label>
                 
                 <!-- Entrada da senha -->
                 <label class="label-input" for="">
                     <i class="fas fa-lock icon-modify"></i>
-                    <input type="password" placeholder="Senha" name="senha" class="inp senha" th:field="*{senhaLogin}" required>
+                    <input type="password" placeholder="Senha" name="senha" class="inp senha" th:field="*{senhaPassageiro}" required>
                 </label>
 
 				<!-- Enviar os dados para o back-end -->

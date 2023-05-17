@@ -9,8 +9,90 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<form action="/bem-vindo" method="post">
-		<h1>Bem-vindo <span th:text="${username}"></span>!</h1>
+	<div>
+		<form action="/bem-vindo" method="post">
+			<h3>Bem-vindo <span th:text="${username}"></span>!</h3>
+		</form>
+		
+		<form action="/perfil" method="get">
+			<p>Faça sua Reserva!</p>
+			<input type="submit" value="Preencher cadastro" name="btn_perfil">
+			
+			<br><br><hr>
+		</form>
+	</div>
+	
+	<!-- Colocar o nome das cidades em uppercase -->
+	
+	<form action="/buscar-reserva" th:object="${viagem}" method="post">
+		<label>Origem: </label>
+		<input type="text" name="cidade_origem" placeholder="Ex: Rio de Janeiro" th:field="*{cidadeOrigem}" required>
+		
+		<label>Destino: </label>
+		<input type="text" name="cidade_destino" placeholder="Ex: São Paulo" th:field="*{cidadeDestino}" required> 
+		
+		<br><br>
+		
+		<label>Ida e volta: </label>
+		<input type="radio" name="opcao" value="IDA_E_VOLTA" checked>
+		
+		<label>Somente ida: </label>
+		<input type="radio" name="opcao" value="SOMENTE_IDA">
+				
+		<br><br>
+		
+		<label>Data de partida: </label>
+		<input type="date" name="data_partida" th:field="*{dataPartida}">
+		
+		<label>Data de volta: </label>
+		<input type="date" name="data_volta" th:field="*{dataVolta}">
+		
+		<br><br>
+
+		<!--  <label>Quantidade de passageiro: </label>
+		<input type="number"> 
+		
+		<br><br> -->
+		
+		<input type="submit" value="Procurar" name="btn_procurar_viagem">
+		<div class="div_error_message">
+			<span class="error_message" th:if="${ErrorMessage}">Preencha o seu cadastro para prosseguir!</span>
+		</div>
+		<br><br><br><hr><br><br><br>
+		
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Código</th>
+					<th>Modal</th>
+					<th>Origem</th>
+					<th>Destino</th>
+					<th>Data de Ida</th>
+					<th>Data de Volta</th>
+					<th>Escala</th>
+					<th>Preço</th>
+					<th></th>
+				</tr>
+			</thead>
+			<!--  <tbody th:if="{!nullable}">
+				<a th:href="@{/reserva}" th:attr="href=@{/reserva}"></a>
+			</tbody>-->
+			<tbody>
+				<tr th:each="reserva : ${reservas}" >
+					<td th:text="${reserva.codReserva}"></td>
+					<td th:text="${reserva.embarque.modal.tipoModal}"></td>
+					<td th:text="${reserva.viagem.cidadeOrigem}"></td>
+					<td th:text="${reserva.viagem.cidadeDestino}"></td>
+					<td th:text="${reserva.viagem.dataPartida}"></td>
+					<td th:text="${reserva.viagem.dataVolta}"></td>
+					<td th:text="${reserva.viagem.contemEscala}"></td>
+					<td th:text="${reserva.valorReserva}"></td>
+					<td>
+						<a th:href="@{pagamento/{codReserva}(codReserva=${reserva.codReserva})}" class="btn_agendar">Agendar </a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</form>
 </body>
 </html>

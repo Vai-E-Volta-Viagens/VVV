@@ -14,4 +14,8 @@ public class ServiceEndereco {
 	public Endereco save(Endereco endereco) {
 		return repositoryEndereco.save(endereco);
 	}
+	
+	public Endereco findByIdEndereco(Long id) {
+		return repositoryEndereco.findByIdEndereco(id);
+	}
 }

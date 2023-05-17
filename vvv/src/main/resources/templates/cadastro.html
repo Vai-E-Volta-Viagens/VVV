@@ -39,7 +39,7 @@
             <div class="divTitle divLog">
                 <h1 class="titleForm titleLog">CADASTRE-SE</h1>
             </div>
-            <form action="/realizar-cadastro" class="form" th:object="${cadastro}" method="post">
+            <form action="/realizar-cadastro" class="form" th:object="${passageiro}" method="post">
 
                 <div id="socialLogin">
                     <i class="bi bi-facebook"></i>
@@ -53,25 +53,25 @@
 						<!-- Entrada do email -->
                         <label class="label-input" for="">
                             <i class="far fa-envelope icon-modify"></i>
-                            <input type="email" placeholder="Email" name="email" th:field="*{login.emailLogin}" required>
+                            <input type="email" placeholder="Email" name="email" th:field="*{emailPassageiro}" required>
                         </label>
                         
                         <!-- Entrada do primeiro nome do passageiro -->
                         <label class="label-input" for="">
                             <i class="fas fa-file-signature icon-modify"></i>
-                            <input type="text" placeholder="Primeiro Nome" name="pNome" th:field="*{primeiroNome}" required>
+                            <input type="text" placeholder="Primeiro Nome" name="pNome" th:field="*{primeiroNomePassageiro}" required>
                         </label>
                         
                         <!-- Entrada do sobrenome do passageiro -->
                         <label class="label-input" for="">
                             <i class="fas fa-file-signature icon-modify"></i>
-                            <input type="text" placeholder="Sobrenome" name="sobrenome" th:field="*{sobrenome}" required>
+                            <input type="text" placeholder="Sobrenome" name="sobrenome" th:field="*{sobrenomePassageiro}" required>
                         </label>
                         
                         <!-- Entrada da senha -->
                         <label class="label-input" for="">
                             <i class="fas fa-lock icon-modify"></i>
-                            <input type="password" placeholder="Senha" name="senha" th:field="*{login.senhaLogin}" required>
+                            <input type="password" placeholder="Senha" name="senha" th:field="*{senhaPassageiro}" required>
                         </label>
                         <!--
                         <label class="label-input" for="">
