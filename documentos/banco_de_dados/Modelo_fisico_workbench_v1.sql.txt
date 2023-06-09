@@ -1,0 +1,332 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema vvv_db
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema vvv_db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `vvv_db` DEFAULT CHARACTER SET utf8 ;
+USE `vvv_db` ;
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`Estado`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`Estado` (
+  `idEst` INT NOT NULL AUTO_INCREMENT,
+  `Nome` VARCHAR(50) NOT NULL,
+  `UF` VARCHAR(2) NOT NULL,
+  PRIMARY KEY (`idEst`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`Cidade`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`Cidade` (
+  `idCid` INT NOT NULL AUTO_INCREMENT,
+  `Nome` VARCHAR(50) NOT NULL,
+  `Estado_idEst` INT NOT NULL,
+  PRIMARY KEY (`idCid`),
+  INDEX `fk_Cidade_Estado1_idx` (`Estado_idEst` ASC) VISIBLE,
+  CONSTRAINT `fk_Cidade_Estado1`
+    FOREIGN KEY (`Estado_idEst`)
+    REFERENCES `vvv_db`.`Estado` (`idEst`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`Endereco`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`Endereco` (
+  `idEnd` INT NOT NULL AUTO_INCREMENT,
+  `rua` VARCHAR(50) NOT NULL,
+  `CEP` INT(8) NOT NULL,
+  `numero` INT(10) NOT NULL,
+  `complemento` VARCHAR(100) NULL,
+  `Cidade_idCid` INT NOT NULL,
+  PRIMARY KEY (`idEnd`),
+  INDEX `fk_Endereco_Cidade1_idx` (`Cidade_idCid` ASC) VISIBLE,
+  CONSTRAINT `fk_Endereco_Cidade1`
+    FOREIGN KEY (`Cidade_idCid`)
+    REFERENCES `vvv_db`.`Cidade` (`idCid`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`PostoVendas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`PostoVendas` (
+  `idpost` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  `CNPJ` INT(20) NOT NULL,
+  `Endereco_idEnd` INT NOT NULL,
+  PRIMARY KEY (`idpost`),
+  INDEX `fk_PostoVendas_Endereco1_idx` (`Endereco_idEnd` ASC) VISIBLE,
+  CONSTRAINT `fk_PostoVendas_Endereco1`
+    FOREIGN KEY (`Endereco_idEnd`)
+    REFERENCES `vvv_db`.`Endereco` (`idEnd`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`Funcionario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`Funcionario` (
+  `idFunc` INT NOT NULL AUTO_INCREMENT,
+  `GerenteVendasOnline` TINYINT NULL,
+  `PriNome` VARCHAR(40) NOT NULL,
+  `UltNome` VARCHAR(40) NOT NULL,
+  `Endereco_idEnd` INT NOT NULL,
+  `Gerente-IdFunc` INT NULL,
+  `PostoVendas_idpost` INT NOT NULL,
+  PRIMARY KEY (`idFunc`),
+  INDEX `fk_Funcionario_Endereco1_idx` (`Endereco_idEnd` ASC) VISIBLE,
+  INDEX `fk_Funcionario_Funcionario1_idx` (`Gerente-IdFunc` ASC) VISIBLE,
+  INDEX `fk_Funcionario_PostoVendas1_idx` (`PostoVendas_idpost` ASC) VISIBLE,
+  CONSTRAINT `fk_Funcionario_Endereco1`
+    FOREIGN KEY (`Endereco_idEnd`)
+    REFERENCES `vvv_db`.`Endereco` (`idEnd`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Funcionario_Funcionario1`
+    FOREIGN KEY (`Gerente-IdFunc`)
+    REFERENCES `vvv_db`.`Funcionario` (`idFunc`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Funcionario_PostoVendas1`
+    FOREIGN KEY (`PostoVendas_idpost`)
+    REFERENCES `vvv_db`.`PostoVendas` (`idpost`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`Cliente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`Cliente` (
+  `CPF` INT(11) NOT NULL,
+  `e-mail` VARCHAR(100) NOT NULL,
+  `senha` VARCHAR(100) NOT NULL,
+  `sexo` VARCHAR(50) NOT NULL,
+  `nacionalidade` VARCHAR(45) NOT NULL,
+  `datanasc` DATE NOT NULL,
+  `CadastroOnline` TINYINT NULL,
+  `profissao` VARCHAR(100) NOT NULL,
+  `rg` VARCHAR(45) NOT NULL,
+  `PriNome` VARCHAR(40) NOT NULL,
+  `UltNome` VARCHAR(40) NOT NULL,
+  `Funcionario_idFunc` INT NULL,
+  `Endereco_idEnd` INT NOT NULL,
+  PRIMARY KEY (`CPF`),
+  INDEX `fk_Cliente_Funcionario1_idx` (`Funcionario_idFunc` ASC) VISIBLE,
+  INDEX `fk_Cliente_Endereco1_idx` (`Endereco_idEnd` ASC) VISIBLE,
+  CONSTRAINT `fk_Cliente_Funcionario1`
+    FOREIGN KEY (`Funcionario_idFunc`)
+    REFERENCES `vvv_db`.`Funcionario` (`idFunc`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Cliente_Endereco1`
+    FOREIGN KEY (`Endereco_idEnd`)
+    REFERENCES `vvv_db`.`Endereco` (`idEnd`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`Viagem`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`Viagem` (
+  `idViagem` INT NOT NULL AUTO_INCREMENT,
+  `TempoViagem` TIME NOT NULL,
+  `HoraChegada` TIME NOT NULL,
+  `HoraPartida` TIME NOT NULL,
+  `ESCALA` VARCHAR(50) NULL,
+  `CidadeDestino` VARCHAR(50) NOT NULL,
+  `CidadeOrigem` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`idViagem`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`Reserva`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`Reserva` (
+  `IdRes` INT NOT NULL AUTO_INCREMENT,
+  `valor` FLOAT NOT NULL,
+  `aerea` TINYINT NULL,
+  `PosiPoltrona` VARCHAR(10) NULL,
+  `Viagem_idViagem` INT NOT NULL,
+  PRIMARY KEY (`IdRes`),
+  INDEX `fk_Reserva_Viagem1_idx` (`Viagem_idViagem` ASC) VISIBLE,
+  CONSTRAINT `fk_Reserva_Viagem1`
+    FOREIGN KEY (`Viagem_idViagem`)
+    REFERENCES `vvv_db`.`Viagem` (`idViagem`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`alocacao`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`alocacao` (
+  `idAloc` INT NOT NULL AUTO_INCREMENT,
+  `DataSolicitacao` DATETIME NULL,
+  `alocacaocol` VARCHAR(45) NULL,
+  `Cliente_CPF` INT(11) NOT NULL,
+  `Confirma_IdPag` INT NULL,
+  `Reserva_IdRes` INT NOT NULL,
+  `Realiza_idFunc` INT NULL,
+  `Aprova_idFunc` INT NULL,
+  PRIMARY KEY (`idAloc`),
+  INDEX `fk_alocacao_Cliente1_idx` (`Cliente_CPF` ASC) VISIBLE,
+  INDEX `fk_alocacao_Pagamento1_idx` (`Confirma_IdPag` ASC) VISIBLE,
+  INDEX `fk_alocacao_Reserva1_idx` (`Reserva_IdRes` ASC) VISIBLE,
+  INDEX `fk_alocacao_Funcionario1_idx` (`Realiza_idFunc` ASC) VISIBLE,
+  INDEX `fk_alocacao_Funcionario2_idx` (`Aprova_idFunc` ASC) VISIBLE,
+  CONSTRAINT `fk_alocacao_Cliente1`
+    FOREIGN KEY (`Cliente_CPF`)
+    REFERENCES `vvv_db`.`Cliente` (`CPF`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_alocacao_Pagamento1`
+    FOREIGN KEY (`Confirma_IdPag`)
+    REFERENCES `vvv_db`.`Pagamento` (`IdPag`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_alocacao_Reserva1`
+    FOREIGN KEY (`Reserva_IdRes`)
+    REFERENCES `vvv_db`.`Reserva` (`IdRes`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_alocacao_Funcionario1`
+    FOREIGN KEY (`Realiza_idFunc`)
+    REFERENCES `vvv_db`.`Funcionario` (`idFunc`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_alocacao_Funcionario2`
+    FOREIGN KEY (`Aprova_idFunc`)
+    REFERENCES `vvv_db`.`Funcionario` (`idFunc`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`Proprietaria`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`Proprietaria` (
+  `idPropriet` INT NOT NULL AUTO_INCREMENT,
+  `CNPJ` INT(20) NOT NULL,
+  `nome` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`idPropriet`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`Pagamento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`Pagamento` (
+  `IdPag` INT NOT NULL AUTO_INCREMENT,
+  `Parcelamento` INT NOT NULL,
+  `FormaPag` VARCHAR(45) NOT NULL,
+  `PagamentoFeito` TINYINT NULL,
+  `Cliente_CPF` INT(11) NOT NULL,
+  `alocacao_idAloc` INT NOT NULL,
+  `Proprietaria_idPropriet` INT NOT NULL,
+  PRIMARY KEY (`IdPag`),
+  INDEX `fk_Pagamento_Cliente1_idx` (`Cliente_CPF` ASC) VISIBLE,
+  INDEX `fk_Pagamento_alocacao1_idx` (`alocacao_idAloc` ASC) VISIBLE,
+  INDEX `fk_Pagamento_Proprietaria1_idx` (`Proprietaria_idPropriet` ASC) VISIBLE,
+  CONSTRAINT `fk_Pagamento_Cliente1`
+    FOREIGN KEY (`Cliente_CPF`)
+    REFERENCES `vvv_db`.`Cliente` (`CPF`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Pagamento_alocacao1`
+    FOREIGN KEY (`alocacao_idAloc`)
+    REFERENCES `vvv_db`.`alocacao` (`idAloc`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Pagamento_Proprietaria1`
+    FOREIGN KEY (`Proprietaria_idPropriet`)
+    REFERENCES `vvv_db`.`Proprietaria` (`idPropriet`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`Ticket`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`Ticket` (
+  `idTicket` INT NOT NULL AUTO_INCREMENT,
+  `DataGeracao` DATETIME NOT NULL,
+  `Pagamento_IdPag` INT NOT NULL,
+  PRIMARY KEY (`idTicket`),
+  INDEX `fk_Ticket_Pagamento_idx` (`Pagamento_IdPag` ASC) VISIBLE,
+  CONSTRAINT `fk_Ticket_Pagamento`
+    FOREIGN KEY (`Pagamento_IdPag`)
+    REFERENCES `vvv_db`.`Pagamento` (`IdPag`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`Modal`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`Modal` (
+  `idModal` INT NOT NULL AUTO_INCREMENT,
+  `tipo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idModal`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `vvv_db`.`Embarque`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `vvv_db`.`Embarque` (
+  `IdEmbarq` INT NOT NULL AUTO_INCREMENT,
+  `capacidade` DOUBLE NOT NULL,
+  `manutencao` TINYINT NULL,
+  `Proprietaria_idPropriet` INT NOT NULL,
+  `Modal_idModal` INT NOT NULL,
+  `Endereco_idEnd` INT NOT NULL,
+  PRIMARY KEY (`IdEmbarq`),
+  INDEX `fk_Embarque_Proprietaria1_idx` (`Proprietaria_idPropriet` ASC) VISIBLE,
+  INDEX `fk_Embarque_Modal1_idx` (`Modal_idModal` ASC) VISIBLE,
+  INDEX `fk_Embarque_Endereco1_idx` (`Endereco_idEnd` ASC) VISIBLE,
+  CONSTRAINT `fk_Embarque_Proprietaria1`
+    FOREIGN KEY (`Proprietaria_idPropriet`)
+    REFERENCES `vvv_db`.`Proprietaria` (`idPropriet`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Embarque_Modal1`
+    FOREIGN KEY (`Modal_idModal`)
+    REFERENCES `vvv_db`.`Modal` (`idModal`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Embarque_Endereco1`
+    FOREIGN KEY (`Endereco_idEnd`)
+    REFERENCES `vvv_db`.`Endereco` (`idEnd`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

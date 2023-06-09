@@ -1,0 +1,23 @@
+Instale o servidor mysql:
+https://www.wampserver.com/en/
+
+Depois de instalá-lo é necessário executá-lo.
+
+Ele possui uma interface que pode ser acessada pelo navegador: http://localhost/phpmyadmin/
+login: root
+senha:
+
+Na parte superior estará escrito Servidor: Mysql:<porta>
+Essa porta é importante para o workbench conseguir se conectar a este banco, o padrão é 3306.
+
+Porém, prefiro o programa de gerênciamento oficial do mysql, o workbench. Instalando o mysql completo ele vem junto. Recomendo a instalação completa, porque vem com todos os módulos necessários: https://www.mysql.com/downloads/
+
+É possível abrir o diagrama lógico que criei no workbench e seguir o seguinte caminho para inserí-lo no wampserver: 
+
+Abra o arquivo "Modelo_logico_workbench_v1" no workbench. 
+
+Para gerar o banco e enviá-lo para o wampserver siga os passos desse vídeo: https://www.youtube.com/watch?v=hZd9G9Ebixc&list=PLFKNRbBuFQTidyopYnQyXBvsw1c5oF5FZ&index=11
+
+Até o minuto 6 é ele gerando o banco e enviando para um servidor.
+
+O banco vai estar vazio. Estou preenchendo algumas tabelas que não irão mudar ainda, quando terminar envio para a pasta dump_da_database.
