@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h1>Pagamento</h1>
+	
+	<table border="1">
+		<tr>
+			<td>Código: </td>
+			<td th:text="${reserva.codReserva}"></td>
+		</tr>
+		<tr>
+			<td>Modal: </td>
+			<td th:text="${reserva.embarque.modal.tipoModal}"></td>
+		</tr>
+		<tr>
+			<td>Origem: </td>
+			<td th:text="${reserva.viagem.cidadeOrigem}"></td>
+		</tr>
+		<tr>
+			<td>Destino: </td>
+			<td th:text="${reserva.viagem.cidadeDestino}"></td>
+		</tr>
+		<tr>
+			<td>Data de ida: </td>
+			<td th:text="${reserva.viagem.dataPartida}"></td>
+		</tr>
+		<tr>
+			<td>Data de volta: </td>
+			<td th:text="${reserva.viagem.dataVolta}"></td>
+		</tr>
+		<tr>
+			<td>Escala: </td>
+			<td th:text="${reserva.viagem.contemEscala}"></td>
+		</tr>
+		<tr>
+			<td>Preço: </td>
+			<td th:text="${reserva.valorReserva}"></td>
+		</tr>
+	</table>
+</body>
+</html>

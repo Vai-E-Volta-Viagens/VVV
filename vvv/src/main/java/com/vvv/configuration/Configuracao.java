@@ -1,15 +1,35 @@
 package com.vvv.configuration;
 
 import java.time.LocalDateTime;
+import com.vvv.model.Passageiro;
+import com.vvv.model.Reserva;
 
-import com.vvv.model.Cadastro;
 
+// Classe responsável por realizar ajustes e configurações
 public class Configuracao {
-	public static void RegistrationDate(Cadastro cadastro) {
-		cadastro.setDataDeCadastro(LocalDateTime.now());
+	private static long cod = 1;
+	
+	// Adicionar a data atual do cadastro
+	public static void RegistrationDate(Passageiro passageiro) {
+		passageiro.setDataCadastro(LocalDateTime.now());
 	}
 	
-	public static void GeneratingCodeForRegister(Cadastro cadastro) {
-		cadastro.setCodigoPassageiro(cadastro.getLogin().getIdLogin() + 2);
+	// Gerar o código do Passageiro
+	public static void GeneratingCodeForRegister(Passageiro passageiro) {
+		passageiro.setCodigoPassageiro(cod+=3);
+	}
+	
+	public static void addDataInUsuarioLogado(Passageiro usuarioLogado, Passageiro pass) {
+		usuarioLogado.setCpfPassageiro(pass.getCpfPassageiro());
+		usuarioLogado.setTelefonePassageiro(pass.getTelefonePassageiro());
+		usuarioLogado.setProfissaoPassageiro(pass.getProfissaoPassageiro());
+		usuarioLogado.setRgPassageiro(pass.getRgPassageiro());
+		usuarioLogado.setDataDeNascimentoPassageiro(pass.getDataDeNascimentoPassageiro());
+		usuarioLogado.setNacionalidadePassageiro(pass.getNacionalidadePassageiro());
+		usuarioLogado.setSexoPassageiro(pass.getSexoPassageiro());
+	}
+	
+	public static void GeneratingCodeForReservation(Reserva reserva) { 
+		reserva.setCodReserva(cod + 4);
 	}
 }

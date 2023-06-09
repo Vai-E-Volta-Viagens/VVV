@@ -14,8 +14,10 @@
 </head>
 <body>
     
+    <!-- Form da tela de Cadastro -->
     <main id="mainLogin">
 
+		<!-- Tela de introdução do Form de cadastro -->
         <div class="divForm formCad">
             <img src="./logo/logo-editor.svg" alt="Vai & Volta Viagens" id="logo"> 
             <div class="divTitle divCad">
@@ -31,11 +33,13 @@
 	            </button>
             </form>
         </div>
+        
+        <!-- Tela de envio de dados do cadastro para o back-end -->
         <div class="divForm formLog">
             <div class="divTitle divLog">
                 <h1 class="titleForm titleLog">CADASTRE-SE</h1>
             </div>
-            <form action="/realizar-cadastro" class="form" th:object="${cadastro}" method="post">
+            <form action="/realizar-cadastro" class="form" th:object="${passageiro}" method="post">
 
                 <div id="socialLogin">
                     <i class="bi bi-facebook"></i>
@@ -46,25 +50,28 @@
                 <div id="dados">
                     <div class="auxDados auxDadosP">
 
+						<!-- Entrada do email -->
                         <label class="label-input" for="">
                             <i class="far fa-envelope icon-modify"></i>
-                            <input type="email" placeholder="Email" name="email" th:field="*{login.emailLogin}" required>
+                            <input type="email" placeholder="Email" name="email" th:field="*{emailPassageiro}" required>
                         </label>
                         
-                        
+                        <!-- Entrada do primeiro nome do passageiro -->
                         <label class="label-input" for="">
                             <i class="fas fa-file-signature icon-modify"></i>
-                            <input type="text" placeholder="Primeiro Nome" name="pNome" th:field="*{primeiroNome}" required>
+                            <input type="text" placeholder="Primeiro Nome" name="pNome" th:field="*{primeiroNomePassageiro}" required>
                         </label>
                         
+                        <!-- Entrada do sobrenome do passageiro -->
                         <label class="label-input" for="">
                             <i class="fas fa-file-signature icon-modify"></i>
-                            <input type="text" placeholder="Sobrenome" name="sobrenome" th:field="*{sobrenome}" required>
+                            <input type="text" placeholder="Sobrenome" name="sobrenome" th:field="*{sobrenomePassageiro}" required>
                         </label>
                         
+                        <!-- Entrada da senha -->
                         <label class="label-input" for="">
                             <i class="fas fa-lock icon-modify"></i>
-                            <input type="password" placeholder="Senha" name="senha" th:field="*{login.senhaLogin}" required>
+                            <input type="password" placeholder="Senha" name="senha" th:field="*{senhaPassageiro}" required>
                         </label>
                         <!--
                         <label class="label-input" for="">
@@ -160,6 +167,7 @@
                 </div>
                 -->
 
+				<!-- Enviar os dados para o banco de dados -->
                 <button type="submit" class="btn btnEntrar">
                     <div class="wrapper">
                         <i class="bi bi-send"></i>
@@ -167,7 +175,14 @@
                     <span>Cadastre-se</span>
                 </button>
                 
-                <span th:text="${ExistingRegistration}" th:if="${ExistingRegistration != null}"></span>
+                <!-- Mensagem de erro em caso de cadastro inválido -->
+               
+                <div class="div_error_message">
+                	<span class="error_message" th:if="${ExistingRegistration}"
+                	style="margin-top: 1px; margin-left: 5px; margin-right: 5px; font-size: 10px; 
+                	padding: 0; box-sizing: border-box; color: red;"
+                	>Este email já está cadastrado em nosso sistema!</span>
+                </div>
 
             </form>
         </div>
