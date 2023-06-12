@@ -56,17 +56,17 @@
 		<br><br>
 		
 		<label>Cidade: </label>
-		<input type="text" name="cidade" placeholder="Ex: Niterói" th:field="*{endereco.cidade.nomeCidade}" required>
+		<input type="text" name="cidade" placeholder="Ex: Niterói" th:field="*{endereco.fkCidade.nomeCidade}" required>
 		
 		<br><br>
 		
 		<label>Estado: </label>
-		<input type="text" name="estado" placeholder="Ex: Rio de Janeiro" th:field="*{endereco.cidade.estado.nomeEstado}" required>
+		<input type="text" name="estado" placeholder="Ex: Rio de Janeiro" th:field="*{endereco.fkCidade.fkEstado.nomeEstado}" required>
 		
 		<br><br>
 		
 		<label>UF: </label>
-		<select name="uf" th:field="*{endereco.cidade.estado.uf}" required>
+		<select name="uf" th:field="*{endereco.fkCidade.fkEstado.uf}" required>
 			<option value="" disabled selected></option>
 			<option value="AC">AC</option>
 	        <option value="AL">AL</option>

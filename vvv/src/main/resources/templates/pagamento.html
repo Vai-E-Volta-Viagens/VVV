@@ -9,41 +9,145 @@
 	<title>Insert title here</title>
 </head>
 <body>
-	<h1>Pagamento</h1>
+	<h1>Realize sua reserva para <span th:text="${reserva.fkViagem.cidadeDestino}"></span></h1>
 	
-	<table border="1">
-		<tr>
-			<td>Código: </td>
-			<td th:text="${reserva.codReserva}"></td>
-		</tr>
-		<tr>
-			<td>Modal: </td>
-			<td th:text="${reserva.embarque.modal.tipoModal}"></td>
-		</tr>
-		<tr>
-			<td>Origem: </td>
-			<td th:text="${reserva.viagem.cidadeOrigem}"></td>
-		</tr>
-		<tr>
-			<td>Destino: </td>
-			<td th:text="${reserva.viagem.cidadeDestino}"></td>
-		</tr>
-		<tr>
-			<td>Data de ida: </td>
-			<td th:text="${reserva.viagem.dataPartida}"></td>
-		</tr>
-		<tr>
-			<td>Data de volta: </td>
-			<td th:text="${reserva.viagem.dataVolta}"></td>
-		</tr>
-		<tr>
-			<td>Escala: </td>
-			<td th:text="${reserva.viagem.contemEscala}"></td>
-		</tr>
-		<tr>
-			<td>Preço: </td>
-			<td th:text="${reserva.valorReserva}"></td>
-		</tr>
-	</table>
+	<div>
+		<div>
+			<table border="1">
+				<tr>
+					<td>Código: </td>
+					<td th:text="${reserva.codReserva}"></td>
+				</tr>
+				<tr>
+					<td>Modal: </td>
+					<td th:text="${reserva.fkEmbarque.fkModal.tipoModal}"></td>
+				</tr>
+				<tr>
+					<td>Origem: </td>
+					<td th:text="${reserva.fkViagem.cidadeOrigem}"></td>
+				</tr>
+				<tr>
+					<td>Destino: </td>
+					<td th:text="${reserva.fkViagem.cidadeDestino}"></td>
+				</tr>
+				<tr>
+					<td>Data de ida: </td>
+					<td th:text="${reserva.fkViagem.dataPartida}"></td>
+				</tr>
+				<tr>
+					<td>Data de volta: </td>
+					<td th:text="${reserva.fkViagem.dataVolta}"></td>
+				</tr>
+				<tr>
+					<td>Escala: </td>
+					<td th:text="${reserva.fkViagem.contemEscala}"></td>
+				</tr>
+				<tr>
+					<td>Preço: </td>
+					<td th:text="${reserva.valorReserva}"></td>
+				</tr>
+			</table>
+		</div>
+		
+			
+		<div>
+			<div>
+				<p>Forma de pagamento</p>
+			</div>
+			<form action="/pagamento-cartao" th:object="${pagamento}" method="post">
+				<div>
+					<div>
+						<label>Dinheiro</label>
+						<input type="radio" name="tipo" value="null">
+					</div>
+					<div>
+						<label>Cartão (Crédito)</label>
+						<input type="radio" name="tipo" value="CREDITO" checked>
+					</div>
+					<div>
+						<label>Cartão (Débito)</label>
+						<input type="radio" name="tipo" value="DEBITO">
+					</div>
+				</div>
+				
+				<div>
+					<p>Parcelamento em 4x SEM JUROS no CRÉDITO!</p>
+				</div>
+				
+				<div>
+					<input type="submit" value="Confirmar">
+				</div>
+				
+				<br><br>
+				
+				<div th:if="${confirmed}" th:each="card : ${cartao}">
+											
+					<form th:action="@{/compra/{idCartao}(idCartao=${card.idCartao})}" th:object="${pagamento}" method="post">
+						<div>		
+							<label>À vista: </label>
+							<input type="radio" name="tipoPag" value="AVISTA" checked>
+						</div>
+						<div>
+							<label>Parcelado em : </label>
+							<input type="radio" name="tipoPag" value="PARCELA" >
+								
+							<label>Quantidade de parcelas: </label>
+							<input type="number" name="parcela" value="2" min="2" max="12" placeholder="Ex: 10" required>
+						</div>
+						<div>
+							<input type="submit" value="IR">
+						</div>
+					</form>
+				</div>
+			</form>
+				
+				<!--  
+				<div th:if="${confirmed}" th:each="card : ${cartao}">
+											
+					<form th:action="@{/compra/{idCartao}(idCartao=${card.idCartao})}" th:object="${pagamento}" method="post">
+						<div>		
+							<label>À vista: </label>
+							<input type="radio" name="tipoPag" value="AVISTA" checked>
+						</div>
+						<div>
+							<label>Parcelado em : </label>
+							<input type="radio" name="tipoPag" value="PARCELA" >
+							
+							<label>Quantidade de parcelas: </label>
+							<input type="number" name="parcela" value="2" min="2" max="12" placeholder="Ex: 10" required>
+						</div>
+						<div>
+							<input type="submit" value="IR">
+						</div>
+					</form>
+				
+
+					<!--  <a th:href="@{/compra/{idCartao}(idCartao=${card.idCartao})}">IR</a> -->
+					
+					<!--  
+					<a th:href="@{/pagamento.html}">Escolher</a>
+					
+					<div th:if="${opcaoSelecionada == 'AVISTA'}">
+						<p>Pagamento à vista confirmado!</p>
+					
+						<a th:href="@{/compra/{idCartao}(idCartao=${card.idCartao})}">IR</a>
+					</div>
+					
+					<div th:if="${opcaoSelecionada == 'PARCELA'}">
+						<p>Pagamento parcelado confirmado!</p>
+					
+						<label>Quantidade de parcelas: </label>
+						<input type="number" name="parcela" min="2" max="12" placeholder="Ex: 10" required>
+						
+						<br>
+						<a th:href="@{/compra/{idCartao}(idCartao=${card.idCartao})}">IR</a>
+					</div>
+					
+				</div>
+			</form>-->
+			
+			
+		</div>
+	</div>
 </body>
 </html>

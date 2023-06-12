@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Import dos arquivos CSS -->
+    <link th:href="@{/css/login.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" 
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <title>VVV - Login</title>
+</head>
+<body>
+    
+    <!-- Form da tela de Login -->
+    <main id="mainLogin">
+
+		<!-- Tela de introdução do Form de Login -->
+        <div class="divForm formCad">
+            <div id="divLogo">
+                <img th:src="@{/logo/logo-editor.svg}" alt="Vai & Volta Viagens" id="logo">
+            </div>
+            <div class="divTitle divCad">
+                <h1 class="titleForm titleCad">CADASTRE-SE</h1>
+                <p id="pCad">Insira seus dados pessoais e comece a viajar conosco!</p>
+            </div>
+            <form action="/cadastre-se" method="get">
+	            <button type="submit" class="btn btnCad">
+	                <div class="wrapper">
+	                    <i class="bi bi-send"></i>
+	                </div>
+	                <span>Cadastre-se</span>
+	            </button>
+            </form>
+        </div>
+        
+        <!-- Tela de envio de dados do login para o back-end -->
+        <div class="divForm formLog">
+            <div class="divTitle divLog">
+                <h1 class="titleForm titleLog">LOGIN</h1>
+            </div>
+            <form action="/bem-vindo" class="form" th:object="${passageiro}" method="post">
+
+                <div id="socialLogin">
+                    <i class="bi bi-facebook"></i>
+                    <i class="bi bi-google"></i>
+                    <i class="bi bi-linkedin"></i>
+                </div>
+                
+                <!-- Entrada do email -->
+                <label class="label-input" for="">
+                    <i class="far fa-envelope icon-modify"></i>
+                    <input type="email" placeholder="Email" name="email" class="inp email" th:field="*{emailPassageiro}" required>
+                </label>
+                
+                <!-- Entrada da senha -->
+                <label class="label-input" for="">
+                    <i class="fas fa-lock icon-modify"></i>
+                    <input type="password" placeholder="Senha" name="senha" class="inp senha" th:field="*{senhaPassageiro}" required>
+                </label>
+
+				<!-- Enviar os dados para o back-end -->
+                <button type="submit" class="btn btnEntrar">
+                    <div class="wrapper">
+                        <i class="bi bi-send"></i>
+                    </div>
+                    <span>Entrar</span>
+                </button>
+				
+				<!-- Mensagem de erro em caso de Login inválido -->
+					
+				<div class="div_error_message">
+					<span class="error_message" th:if="${ErrorMessage}">Login/Senha não identificados</span>
+				</div>
+            </form>
+        </div>
+
+    </main>
+    
+</body>
+</html>

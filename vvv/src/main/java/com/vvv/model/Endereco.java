@@ -8,15 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 @Table(name = "tb_endereco") // Tabela Endereco responsável por salvar os dados de Endereco
@@ -28,7 +26,7 @@ public class Endereco {
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_cidade")
-	private Cidade cidade;
+	private Cidade fkCidade;
 	
 	@Column(name = "rua", nullable = false, length = 40)
 	private String rua;
@@ -41,15 +39,4 @@ public class Endereco {
 	
 	@Column(name = "complemento", length = 50)
 	private String complemento;
-	
-	
-	public Endereco() {}
-	public Endereco(Long idEndereco, Cidade cidade, String rua, String numero, Long cep, String complemento) {
-		this.idEndereco = idEndereco;
-		this.cidade = cidade;
-		this.rua = rua;
-		this.numero = numero;
-		this.cep = cep;
-		this.complemento = complemento;
-	}
 }

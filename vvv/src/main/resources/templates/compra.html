@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h3>Insira o nome dos seus acompanhantes</h3>
+	
+	<form action="/finalizar-compra" th:object="${preCadastrado}" method="post">
+		<ul>
+			<li th:each="i : ${#numbers.sequence(startNumber, endNumber)}">
+				<p>Insira o nome dos seus acompanhantes</p>
+				
+				<label>Nome: </label>
+				<input type="text" name="nomePreCadastrado" placeholder="Ex: João Paulo" th:field="*{nomePreCadastrado}" >
+				
+				<label>Sobrenome: </label>
+				<input type="text" name="sobrenomePreCadastrado" placeholder="Ex: da Silva" th:field="*{sobrenomePreCadastrado}" >
+					
+				<label>Email: </label>
+				<input type="email" name="emailPreCadastrado" placeholder="Ex: joaopaulo01@gmail.com" th:field="*{emailPreCadastrado}" >
+				
+				<label>CPF: </label>
+				<input type="text" name="cpfPreCadastrado" placeholder="Ex: 11122233345" th:field="*{cpfPreCadastrado}" >
+				
+				<label>Data de nascimento: </label>
+				<input type="text" name="dataDeNascimentoPreCadastrado" placeholder="Ex: 08/06/2023" th:field="*{dataDeNascimentoPreCadastrado}" >
+				<hr>
+			</li>
+		</ul>
+		
+		<input type="submit" value="Ok">
+		
+		<div th:if="${isConfirmed}" th:each="card : ${cartao}">
+			<form action="/ticket" th:object="${cartao}" method="post">
+				<h3>Finalize seu pagamento!</h3>
+				<p>Preço total: R$ <span th:text="${valorTotal}"></span></p>
+				<p>Preço parcelado: R$ <span th:text="${valorParcelado}"></span></p>
+			
+				<div>
+					<label>Número do cartão: </label>
+					<input type="number" name="idCartao" placeholder="Ex: 123456789" th:field="*{idCartao}" required>
+					
+					<label>Senha do cartão: </label>
+					<input type="password" name="senha" placeholder="Ex: 1234" th:field="*{senha}" required>
+					
+					<label>Operadora: </label>
+					<input type="text" name="operadora" placeholder="Ex: Bradesco" th:field="*{operadora}" required>
+	
+					<br>
+					<input type="submit" value="Confirmar">
+				</div>
+			</form>	
+		</div>
+	</form>
+</body>
+</html>

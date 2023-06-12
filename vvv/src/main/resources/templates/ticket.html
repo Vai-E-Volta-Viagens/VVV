@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h1>Seu ticket foi emitido!</h1>
+	
+	<div th:each="i : ${#numbers.sequence(startNumber, endNumber)}">
+		<table th:each="ticket : ${ticket}" border="1">
+			<thead>
+				<tr>	
+					<td>Código: </td>
+					<td th:text="${ticket.codTicket}"></td>
+				</tr>
+				<tr>
+					<td>Passageiro: </td>
+					<td th:text="${ticket.fkPagamento.fkPassageiro.primeiroNomePassageiro + ' ' + ticket.fkPagamento.fkPassageiro.sobrenomePassageiro}"></td>
+				</tr>
+				<tr>
+					<td>CPF: </td>
+					<td th:text="${ticket.fkPagamento.fkPassageiro.cpfPassageiro}"></td>
+				</tr>
+				<tr>
+					<td>Origem: </td>
+					<td th:text="${ticket.fkPagamento.fkAlocacao.fkReserva.fkViagem.cidadeOrigem}"></td>
+				</tr>
+				<tr>
+					<td>Destino: </td>
+					<td th:text="${ticket.fkPagamento.fkAlocacao.fkReserva.fkViagem.cidadeDestino}"></td>
+				</tr>
+				<tr>
+					<td>Escala: </td>
+					<td th:text="${ticket.fkPagamento.fkAlocacao.fkReserva.fkViagem.contemEscala} ? ${ticket.fkPagamento.fkAlocacao.fkReserva.fkViagem.escala} : ' '"></td>
+				</tr>
+				<tr>
+					<td>Hora de partida: </td>
+					<td th:text="${ticket.fkPagamento.fkAlocacao.fkReserva.fkViagem.horaPartida}"></td>
+				</tr>
+				<tr>
+					<td>Endereço: </td>
+					<td th:text="${ticket.fkPagamento.fkAlocacao.fkReserva.fkEmbarque.fkEndereco.rua + ', ' + ticket.fkPagamento.fkAlocacao.fkReserva.fkEmbarque.fkEndereco.numero + ' - ' + ticket.fkPagamento.fkAlocacao.fkReserva.fkEmbarque.fkEndereco.fkCidade.nomeCidade + ', ' + ticket.fkPagamento.fkAlocacao.fkReserva.fkEmbarque.fkEndereco.fkCidade.fkEstado.nomeEstado + ' - ' + ticket.fkPagamento.fkAlocacao.fkReserva.fkEmbarque.fkEndereco.fkCidade.fkEstado.uf}"></td>
+				</tr>
+				<tr>
+					<td>Modal: </td>
+					<td th:text="${ticket.fkPagamento.fkAlocacao.fkReserva.fkEmbarque.fkModal.tipoModal}"></td>
+				</tr>
+				<tr>
+					<td>Empresa: </td>
+					<td th:text="${ticket.fkPagamento.fkAlocacao.fkReserva.fkEmbarque.fkProprietaria.nomeProprietaria}"></td>
+				</tr>
+				<tr>
+					<td>Assento: </td>
+					<td th:text="${ticket.fkPagamento.fkAlocacao.fkReserva.posicaoPoltrona}"></td>
+				</tr>
+				<tr>
+					<td>Convidados: </td>
+					<td th:text="${nomeConvidado}"></td>
+				</tr>
+				<tr>
+					<td>CPFs: </td>
+					<td th:text="${cpfConvidado}"></td>
+				</tr>
+			</thead>
+		</table>
+		
+		<br><br>
+	</div>
+	<!--  
+	<form action="" method="get">
+		<input type="submit" value="Imprimir">
+	</form>
+	-->
+	<form th:action="@{/bem-vindo}" method="get">
+		<input type="submit" value="Retornar a Home Page">
+	</form>
+</body>
+</html>

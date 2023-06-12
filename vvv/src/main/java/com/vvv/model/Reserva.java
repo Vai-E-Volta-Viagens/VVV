@@ -1,5 +1,7 @@
 package com.vvv.model;
 
+import java.util.List;
+import java.util.Set;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,16 +9,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
 @Table(name = "tb_reserva")
@@ -28,11 +31,18 @@ public class Reserva {
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_viagem")
-	private Viagem viagem;
+	private Viagem fkViagem;
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_embarque")
-	private Embarque embarque;
+	private Embarque fkEmbarque;
+	
+	@OneToOne
+	@JoinColumn(name = "fk_alocacao")
+	private Alocacao fkAlocacao;
+	
+	@OneToMany(mappedBy = "fkReserva")
+	private List<PreCadastrado> preCadastrado;
 	
 	@Column(name = "cod_reserva", unique = true)
 	private Long codReserva;
@@ -44,19 +54,6 @@ public class Reserva {
 	private Boolean reservaAerea;
 	
 	// Ficará para ser selecionada depois
-	@Column(name = "posicao_poltrona", unique = true)
-	private Integer posicaoPoltrona;
-	
-	
-	public Reserva() {}
-	public Reserva(Long idReserva, Viagem viagem, Embarque embarque, Long codReserva, Float valorReserva,
-			Boolean reservaAerea, Integer posicaoPoltrona) {
-		this.idReserva = idReserva;
-		this.viagem = viagem;
-		this.embarque = embarque;
-		this.codReserva = codReserva;
-		this.valorReserva = valorReserva;
-		this.reservaAerea = reservaAerea;
-		this.posicaoPoltrona = posicaoPoltrona;
-	}	
+	@Column(name = "posicao_poltrona")
+	private Set<String> posicaoPoltrona;
 }

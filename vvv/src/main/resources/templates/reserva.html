@@ -16,7 +16,7 @@
 		
 		<form action="/perfil" method="get">
 			<p>Faça sua Reserva!</p>
-			<input type="submit" value="Preencher cadastro" name="btn_perfil">
+			<input type="submit" value="Preencher perfil" name="btn_perfil">
 			
 			<br><br><hr>
 		</form>
@@ -56,7 +56,7 @@
 		
 		<input type="submit" value="Procurar" name="btn_procurar_viagem">
 		<div class="div_error_message">
-			<span class="error_message" th:if="${ErrorMessage}">Preencha o seu cadastro para prosseguir!</span>
+			<span class="error_message" th:if="${ErrorMessage}">Preencha o seu perfil para prosseguir!</span>
 		</div>
 		<br><br><br><hr><br><br><br>
 		
@@ -80,15 +80,16 @@
 			<tbody>
 				<tr th:each="reserva : ${reservas}" >
 					<td th:text="${reserva.codReserva}"></td>
-					<td th:text="${reserva.embarque.modal.tipoModal}"></td>
-					<td th:text="${reserva.viagem.cidadeOrigem}"></td>
-					<td th:text="${reserva.viagem.cidadeDestino}"></td>
-					<td th:text="${reserva.viagem.dataPartida}"></td>
-					<td th:text="${reserva.viagem.dataVolta}"></td>
-					<td th:text="${reserva.viagem.contemEscala}"></td>
+					<td th:text="${reserva.fkEmbarque.fkModal.tipoModal}"></td>
+					<td th:text="${reserva.fkViagem.cidadeOrigem}"></td>
+					<td th:text="${reserva.fkViagem.cidadeDestino}"></td>
+					<td th:text="${reserva.fkViagem.dataPartida}"></td>
+					<td th:text="${reserva.fkViagem.dataVolta}"></td>
+					<td th:text="${reserva.fkViagem.contemEscala}"></td>
 					<td th:text="${reserva.valorReserva}"></td>
 					<td>
-						<a th:href="@{pagamento/{codReserva}(codReserva=${reserva.codReserva})}" class="btn_agendar">Agendar </a>
+						<!--<a th:href="@{pagamento/{codReserva}(codReserva=${reserva.codReserva})}" class="btn_agendar">Agendar </a>-->
+						<a th:href="@{assento/{codReserva}(codReserva=${reserva.codReserva})}" class="btn_agendar">Agendar </a>
 					</td>
 				</tr>
 			</tbody>
