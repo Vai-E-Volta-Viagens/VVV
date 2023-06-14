@@ -37,10 +37,6 @@ public class Reserva {
 	@JoinColumn(name = "fk_embarque")
 	private Embarque fkEmbarque;
 	
-	@OneToOne
-	@JoinColumn(name = "fk_alocacao")
-	private Alocacao fkAlocacao;
-	
 	@OneToMany(mappedBy = "fkReserva")
 	private List<PreCadastrado> preCadastrado;
 	
