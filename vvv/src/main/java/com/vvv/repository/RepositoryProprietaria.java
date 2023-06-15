@@ -2,8 +2,9 @@ package com.vvv.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.vvv.model.Embarque;
+import com.vvv.model.Proprietaria;
 
 
-public interface RepositoryProprietaria extends JpaRepository<Embarque, Long>{
+public interface RepositoryProprietaria extends JpaRepository<Proprietaria, Long>{
 	
 }
