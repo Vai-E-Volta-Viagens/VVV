@@ -502,8 +502,8 @@ public class ControllerProject {
 			this.pagamento.setFkAlocacao(alocacao);
 			servicePagamento.save(this.pagamento);
 			
-			//r.setFkAlocacao(alocacao);
-			//serviceReserva.save(r);
+			r.setFkAlocacao(alocacao);
+			serviceReserva.save(r);
 			
 			//model.addAttribute("cartao", c);
 			//model.addAttribute("ticket", ticket);
