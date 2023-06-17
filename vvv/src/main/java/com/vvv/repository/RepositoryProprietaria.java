@@ -1,7 +1,6 @@
 package com.vvv.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.vvv.model.Embarque;
 import com.vvv.model.Proprietaria;
 
 

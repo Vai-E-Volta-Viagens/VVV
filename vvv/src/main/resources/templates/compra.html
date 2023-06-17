@@ -11,7 +11,7 @@
 <body>
 	<h3>Insira o nome dos seus acompanhantes</h3>
 	
-	<form action="/finalizar-compra" th:object="${preCadastrado}" method="post">
+	<form th:if="${notPc == 1}" action="/finalizar-compra" th:object="${preCadastrado}" method="post">
 		<ul>
 			<li th:each="i : ${#numbers.sequence(startNumber, endNumber)}">
 				<p>Insira o nome dos seus acompanhantes</p>
@@ -56,6 +56,26 @@
 					<input type="submit" value="Confirmar">
 				</div>
 			</form>	
+		</div>
+	</form>
+	
+	<form th:if="${notPc == 0 && isConfirmed}" action="/finalizar-compra" th:object="${cartao}" method="post">
+		<h3>Finalize seu pagamento!</h3>
+		<p>Preço total: R$ <span th:text="${valorTotal}"></span></p>
+		<p>Preço parcelado: R$ <span th:text="${valorParcelado}"></span></p>
+			
+		<div>
+			<label>Número do cartão: </label>
+			<input type="number" name="idCartao" placeholder="Ex: 123456789" th:field="*{idCartao}" required>
+						
+			<label>Senha do cartão: </label>
+			<input type="password" name="senha" placeholder="Ex: 1234" th:field="*{senha}" required>
+						
+			<label>Operadora: </label>
+			<input type="text" name="operadora" placeholder="Ex: Bradesco" th:field="*{operadora}" required>
+		
+			<br>
+			<input type="submit" value="Confirmar">
 		</div>
 	</form>
 </body>
