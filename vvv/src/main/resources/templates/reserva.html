@@ -94,9 +94,7 @@
 							<th></th>
 						</tr>
 					</thead>
-					<!--  <tbody th:if="{!nullable}">
-						<a th:href="@{/reserva}" th:attr="href=@{/reserva}"></a>
-					</tbody>-->
+					
 					<tbody>	<!-- EXIBIR AQUI -->
 						<tr th:each="reserva : ${reservas}" >
 							<td th:text="${reserva.codReserva}"></td>
@@ -112,6 +110,22 @@
 							</td>
 						</tr>
 					</tbody>
+					<!--  
+					<tbody>
+						<tr th:each="reserva : ${reservas}" >
+							<td th:text="${reserva.codReserva}"></td>
+							<td th:text="${reserva.fkEmbarque.fkModal.tipoModal}"></td>
+							<td th:text="${reserva.fkViagem.cidadeOrigem}"></td>
+							<td th:text="${reserva.fkViagem.cidadeDestino}"></td>
+							<td th:text="${reserva.fkViagem.dataPartida}"></td>
+							<td th:text="${reserva.fkViagem.dataVolta}"></td>
+							<td th:text="${reserva.fkViagem.contemEscala}"></td>
+							<td th:text="${reserva.valorReserva}"></td>
+							<td>
+								<a th:href="@{assento/{codReserva}(codReserva=${reserva.codReserva})}" class="btn_agendar">Agendar </a>
+							</td>
+						</tr>
+					</tbody>-->
 				</table>
 			</form>
 		</div>	

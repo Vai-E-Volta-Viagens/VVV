@@ -8,582 +8,706 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link th:href="@{/css/assento.css}" rel="stylesheet">
     <link th:href="@{/logo/favicon.ico}" rel="stylesheet">
-    <title>VVV - Assento</title>
+    <title>VVV - Selecione os assentos</title>
 </head>
 	<body>
-		<h1>Escolha os seus Assentos</h1>
+	<div class="header" id="header">
+		<div class="logo_header">
+			<img th:src="@{/logo/Logo3.png}" class="img_logo_header">
+		</div>
+	</div>
+	<main id="mainAssento">
+		<div class="divEscolha">
+			<h1>Escolha os seus Assentos</h1>
+		</div>
 		
-		<form action="/confirmar-assento" th:object="${reserva}" method="post">
-		
-			<div class="onibus" th:if="${modal == 'Ônibus'}">
-				<h3>Selecione os assentos: </h3>
-				<div class="assento_onibus">
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_1A}">1A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_1B}">1B</div>
-						</span>
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_1C}">1C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_1D}">1D</div>
-						</span>
+		<div class="divForm">
+			<form action="/confirmar-assento" th:object="${reserva}" method="post">
+			
+					<div class="onibus" th:if="${modal == 'Ônibus'}">
+						<div class="div3">
+							<h3>Selecione os assentos: </h3>
+						</div>
+						<div class="assento_onibus">
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_1A}">1A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_1B}">1B</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_1C}">1C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_1D}">1D</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_1E}">1E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_1F}">1F</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_1G}">1G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_1H}">1H</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_2A}">2A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2B}">2B</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_2C}">2C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2D}">2D</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_2E}">2E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2F}">2F</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_2G}">2G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2H}">2H</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_3A}">3A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3B}">3B</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_3C}">3C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3D}">3D</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_esquerda">	
+									<div class="assento" th:style="'background-color: ' + ${assento_3E}">3E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3F}">3F</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_3G}">3G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3H}">3H</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_4A}">4A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4B}">4B</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_4C}">4C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4D}">4D</div>
+								</span>
+							</div>
+							<div class="divBetween">	
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_4E}">4E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4F}">4F</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_4G}">4G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4H}">4H</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_5A}">5A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5B}">5B</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_5C}">5C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5D}">5D</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_5E}">5E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5F}">5F</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_5G}">5G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5H}">5H</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_6A}">6A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6B}">6B</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_6C}">6C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6D}">6D</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_6E}">6E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6F}">6F</div>
+								</span>
+							</div>
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_6G}">6G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6H}">6H</div>
+								</span>						
+							</div>
+						</div>
 					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_1E}">1E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_1F}">1F</div>
-						</span>
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_1G}">1G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_1H}">1H</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_2A}">2A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2B}">2B</div>
-						</span>
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_2C}">2C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2D}">2D</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_2E}">2E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2F}">2F</div>
-						</span>
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_2G}">2G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2H}">2H</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_3A}">3A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3B}">3B</div>
-						</span>
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_3C}">3C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3D}">3D</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">	
-							<div class="assento" th:style="'background-color: ' + ${assento_3E}">3E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3F}">3F</div>
-						</span>
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_3G}">3G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3H}">3H</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_4A}">4A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4B}">4B</div>
-						</span>
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_4C}">4C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4D}">4D</div>
-						</span>
-					</div>
-					<div>	
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_4E}">4E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4F}">4F</div>
-						</span>
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_4G}">4G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4H}">4H</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_5A}">5A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5B}">5B</div>
-						</span>
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_5C}">5C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5D}">5D</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_5E}">5E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5F}">5F</div>
-						</span>
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_5G}">5G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5H}">5H</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_6A}">6A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6B}">6B</div>
-						</span>
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_6C}">6C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6D}">6D</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_6E}">6E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6F}">6F</div>
-						</span>
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_6G}">6G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6H}">6H</div>
-						</span>						
-					</div>
-				</div>
-			</div>
-		
-		
-		
-			<div class="aviao" th:if="${modal == 'Avião'}">
-				<h3>Selecione os assentos: </h3>
-				<div class="assento_aviao">
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_1A}">1A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_1B}">1B</div>
-						</span>
-						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_1C}">1C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_1D}">1D</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_1E}">1E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_1F}">1F</div>
-						</span>
+				
+				
+				
+					<div class="aviao" th:if="${modal == 'Avião'}">
+						<div class="divh3">
+							<h3>Selecione os assentos: </h3>
+						</div>
+						<div class="assento_aviao">
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_1A}">1A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_1B}">1B</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_1C}">1C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_1D}">1D</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_1E}">1E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_1F}">1F</div>
+								</span>
+							</div>
+									
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_1G}">1G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_1H}">1H</div>
+								</span>
+							</div>
 							
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_1G}">1G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_1H}">1H</div>
-						</span>
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_2A}">2A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2B}">2B</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_2C}">2C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2D}">2D</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2E}">2E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2F}">2F</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_2G}">2G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2H}">2H</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_3A}">3A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3B}">3B</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_3C}">3C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3D}">3D</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3E}">3E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3F}">3F</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">	
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_3G}">3G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3H}">3H</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_4A}">4A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4B}">4B</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_4C}">4C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4D}">4D</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4E}">4E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4F}">4F</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_4G}">4G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4H}">4H</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_5A}">5A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5B}">5B</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_5C}">5C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5D}">5D</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5E}">5E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5F}">5F</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_5G}">5G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5H}">5H</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_6A}">6A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6B}">6B</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_6C}">6C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6D}">6D</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6E}">6E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6F}">6F</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_6G}">6G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6H}">6H</div>
+								</span>
+							</div>
+						</div>
 					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_2A}">2A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2B}">2B</div>
-						</span>
+					
+					<div class="navio" th:if="${modal == 'Navio'}">
+						<div class="divh3">
+							<h3>Selecione os assentos: </h3>
+						</div>
+						<div class="assento_navio">
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_1A}">1A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2A}">2A</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_3A}">3A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4A}">4A</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">	
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_5A}">5A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6A}">6A</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_1B}">1B</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2B}">2B</div>
+								</span>
+							</div>	
+								
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_3B}">3B</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4B}">4B</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_5B}">5B</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6B}">6B</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_1C}">1C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2C}">2C</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_3C}">3C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4C}">4C</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_5C}">5C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6C}">6C</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_1D}">1D</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2D}">2D</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_3D}">3D</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4D}">4D</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_5D}">5D</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6D}">6D</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_1E}">1E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2E}">2E</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_3E}">3E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4E}">4E</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_5E}">5E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6E}">6E</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_1F}">1F</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2F}">2F</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_3F}">3F</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4F}">4F</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_5F}">5F</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6F}">6F</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_1G}">1G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2G}">2G</div>
+								</span>
+							</div>	
+							
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_3G}">3G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4G}">4G</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_5G}">5G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6G}">6G</div>
+								</span>
+							</div>
 						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_2C}">2C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2D}">2D</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2E}">2E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2F}">2F</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_2G}">2G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2H}">2H</div>
-						</span>
+							<div class="divBetween">
+								<span class="assento_esquerda">
+									<div class="assento" th:style="'background-color: ' + ${assento_1H}">1H</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2H}">2H</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_meio">
+									<div class="assento" th:style="'background-color: ' + ${assento_3H}">3H</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_4H}">4H</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_5H}">5H</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6H}">6H</div>
+								</span>
+							</div>
+						</div>
 					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_3A}">3A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3B}">3B</div>
-						</span>
+					
+					<div class="trem" th:if="${modal == 'Trem'}">
+						<div class="divh3">
+							<h3>Selecione os assentos: </h3>
+						</div>
+						<div class="assento_trem">
+							<div class="divBetween">
+								<span class="assento_esquerda"> 
+									<div class="assento" th:style="'background-color: ' + ${assento_1A}">1A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2A}">2A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3A}">3A</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_4A}">4A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5A}">5A</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6A}">6A</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda"> 
+									<div class="assento" th:style="'background-color: ' + ${assento_1B}">1B</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2B}">2B</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3B}">3B</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_4B}">4B</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5B}">5B</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6B}">6B</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda"> 
+									<div class="assento" th:style="'background-color: ' + ${assento_1C}">1C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2C}">2C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3C}">3C</div>
+								</span>
+							</div>
 						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_3C}">3C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3D}">3D</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3E}">3E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3F}">3F</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_3G}">3G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3H}">3H</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_4A}">4A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4B}">4B</div>
-						</span>
-						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_4C}">4C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4D}">4D</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4E}">4E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4F}">4F</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_4G}">4G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4H}">4H</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_5A}">5A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5B}">5B</div>
-						</span>
-						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_5C}">5C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5D}">5D</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5E}">5E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5F}">5F</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_5G}">5G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5H}">5H</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_6A}">6A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6B}">6B</div>
-						</span>
-						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_6C}">6C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6D}">6D</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6E}">6E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6F}">6F</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_6G}">6G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6H}">6H</div>
-						</span>
+							<div class="divBetween">		
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_4C}">4C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5C}">5C</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6C}">6C</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda"> 
+									<div class="assento" th:style="'background-color: ' + ${assento_1D}">1D</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2D}">2D</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3D}">3D</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_4D}">4D</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5D}">5D</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6D}">6D</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda"> 
+									<div class="assento" th:style="'background-color: ' + ${assento_1E}">1E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2E}">2E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3E}">3E</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_4E}">4E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5E}">5E</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6E}">6E</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda"> 
+									<div class="assento" th:style="'background-color: ' + ${assento_1F}">1F</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2F}">2F</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3F}">3F</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_4F}">4F</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5F}">5F</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6F}">6F</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda"> 
+									<div class="assento" th:style="'background-color: ' + ${assento_1G}">1G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2G}">2G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3G}">3G</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_4G}">4G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5G}">5G</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6G}">6G</div>
+								</span>
+							</div>
+							
+							<div class="divBetween">
+								<span class="assento_esquerda"> 
+									<div class="assento" th:style="'background-color: ' + ${assento_1H}">1H</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_2H}">2H</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_3H}">3H</div>
+								</span>
+							</div>
+								
+							<div class="divBetween">
+								<span class="assento_direita">
+									<div class="assento" th:style="'background-color: ' + ${assento_4H}">4H</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_5H}">5H</div>
+									<div class="assento" th:style="'background-color: ' + ${assento_6H}">6H</div>
+								</span>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			
-			<div class="navio" th:if="${modal == 'Navio'}">
-				<h3>Selecione os assentos: </h3>
-				<div class="assento_navio">
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_1A}">1A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2A}">2A</div>
-						</span>
-						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_3A}">3A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4A}">4A</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_5A}">5A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6A}">6A</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_1B}">1B</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2B}">2B</div>
-						</span>
-						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_3B}">3B</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4B}">4B</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_5B}">5B</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6B}">6B</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_1C}">1C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2C}">2C</div>
-						</span>
-						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_3C}">3C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4C}">4C</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_5C}">5C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6C}">6C</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_1D}">1D</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2D}">2D</div>
-						</span>
-						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_3D}">3D</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4D}">4D</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_5D}">5D</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6D}">6D</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_1E}">1E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2E}">2E</div>
-						</span>
-						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_3E}">3E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4E}">4E</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_5E}">5E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6E}">6E</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_1F}">1F</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2F}">2F</div>
-						</span>
-						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_3F}">3F</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4F}">4F</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_5F}">5F</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6F}">6F</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_1G}">1G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2G}">2G</div>
-						</span>
-						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_3G}">3G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4G}">4G</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_5G}">5G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6G}">6G</div>
-						</span>
-					</div>
-					<div>
-						<span class="assento_esquerda">
-							<div class="assento" th:style="'background-color: ' + ${assento_1H}">1H</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2H}">2H</div>
-						</span>
-						
-						<span class="assento_meio">
-							<div class="assento" th:style="'background-color: ' + ${assento_3H}">3H</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_4H}">4H</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_5H}">5H</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6H}">6H</div>
-						</span>
-					</div>
+				
+				<div class="divP">
+					<p id="pSelect">Assentos selecionados: <span th:text="${ReservasSelecionadas}"></span></p> 
 				</div>
-			</div>
-			
-			<div class="trem" th:if="${modal == 'Trem'}">
-				<h3>Selecione os assentos: </h3>
-				<div class="assento_trem">
-					<div>
-						<span class="assento_esquerda"> 
-							<div class="assento" th:style="'background-color: ' + ${assento_1A}">1A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2A}">2A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3A}">3A</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_4A}">4A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5A}">5A</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6A}">6A</div>
-						</span>
-					</div>
-					
-					<div>
-						<span class="assento_esquerda"> 
-							<div class="assento" th:style="'background-color: ' + ${assento_1B}">1B</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2B}">2B</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3B}">3B</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_4B}">4B</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5B}">5B</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6B}">6B</div>
-						</span>
-					</div>
-					
-					<div>
-						<span class="assento_esquerda"> 
-							<div class="assento" th:style="'background-color: ' + ${assento_1C}">1C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2C}">2C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3C}">3C</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_4C}">4C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5C}">5C</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6C}">6C</div>
-						</span>
-					</div>
-					
-					<div>
-						<span class="assento_esquerda"> 
-							<div class="assento" th:style="'background-color: ' + ${assento_1D}">1D</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2D}">2D</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3D}">3D</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_4D}">4D</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5D}">5D</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6D}">6D</div>
-						</span>
-					</div>
-					
-					<div>
-						<span class="assento_esquerda"> 
-							<div class="assento" th:style="'background-color: ' + ${assento_1E}">1E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2E}">2E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3E}">3E</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_4E}">4E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5E}">5E</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6E}">6E</div>
-						</span>
-					</div>
-					
-					<div>
-						<span class="assento_esquerda"> 
-							<div class="assento" th:style="'background-color: ' + ${assento_1F}">1F</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2F}">2F</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3F}">3F</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_4F}">4F</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5F}">5F</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6F}">6F</div>
-						</span>
-					</div>
-					
-					<div>
-						<span class="assento_esquerda"> 
-							<div class="assento" th:style="'background-color: ' + ${assento_1G}">1G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2G}">2G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3G}">3G</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_4G}">4G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5G}">5G</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6G}">6G</div>
-						</span>
-					</div>
-					
-					<div>
-						<span class="assento_esquerda"> 
-							<div class="assento" th:style="'background-color: ' + ${assento_1H}">1H</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_2H}">2H</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_3H}">3H</div>
-						</span>
-						
-						<span class="assento_direita">
-							<div class="assento" th:style="'background-color: ' + ${assento_4H}">4H</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_5H}">5H</div>
-							<div class="assento" th:style="'background-color: ' + ${assento_6H}">6H</div>
-						</span>
-					</div>
-				</div>
-			</div>
-			
-			<br><br>
-			
-			<div>
-				<p>Assentos selecionados: <span th:text="${ReservasSelecionadas}"></span></p> 
-			</div>
-			
-			<br>
-			
-			<div>
-				<label>Escolha seu assento:</label>
-				<br><br>
-				<select name="posicao" required>
-					<option value="1A">1A</option>
-					<option value="2A">2A</option>
-					<option value="3A">3A</option>
-					<option value="4A">4A</option>
-					<option value="5A">5A</option>
-					<option value="6A">6A</option>
-					<option value="1B">1B</option>
-					<option value="2B">2B</option>
-					<option value="3B">3B</option>
-					<option value="4B">4B</option>
-					<option value="5B">5B</option>
-					<option value="6B">6B</option>
-					<option value="1C">1C</option>
-					<option value="2C">2C</option>
-					<option value="3C">3C</option>
-					<option value="4C">4C</option>
-					<option value="5C">5C</option>
-					<option value="6C">6C</option>
-					<option value="1D">1D</option>
-					<option value="2D">2D</option>
-					<option value="3D">3D</option>
-					<option value="4D">4D</option>
-					<option value="5D">5D</option>
-					<option value="6D">6D</option>
-					<option value="1E">1E</option>
-					<option value="2E">2E</option>
-					<option value="3E">3E</option>
-					<option value="4D">4D</option>
-					<option value="5D">5D</option>
-					<option value="6D">6D</option>
-					<option value="1F">1F</option>
-					<option value="2F">2F</option>
-					<option value="3F">3F</option>
-					<option value="4F">4F</option>
-					<option value="5F">5F</option>
-					<option value="6F">6F</option>
-					<option value="1G">1G</option>
-					<option value="2G">2G</option>
-					<option value="3G">3G</option>
-					<option value="4G">4G</option>
-					<option value="5G">5G</option>
-					<option value="6G">6G</option>
-					<option value="1H">1H</option>
-					<option value="2H">2H</option>
-					<option value="3H">3H</option>
-					<option value="4H">4H</option>
-					<option value="5H">5H</option>
-					<option value="6H">6H</option>
-				</select>
-				<br><br>
-				<input type="submit" value="OK">
 				
 				<br>
-				<div>
-					<span th:if="${ErrorMessage}">Essa reserva está ocupada!</span>
+				
+				<div class="divEscolha">
+					<label>Escolha seu assento:</label>
+					<select name="posicao" required>
+						<option value="1A">1A</option>
+						<option value="2A">2A</option>
+						<option value="3A">3A</option>
+						<option value="4A">4A</option>
+						<option value="5A">5A</option>
+						<option value="6A">6A</option>
+						<option value="1B">1B</option>
+						<option value="2B">2B</option>
+						<option value="3B">3B</option>
+						<option value="4B">4B</option>
+						<option value="5B">5B</option>
+						<option value="6B">6B</option>
+						<option value="1C">1C</option>
+						<option value="2C">2C</option>
+						<option value="3C">3C</option>
+						<option value="4C">4C</option>
+						<option value="5C">5C</option>
+						<option value="6C">6C</option>
+						<option value="1D">1D</option>
+						<option value="2D">2D</option>
+						<option value="3D">3D</option>
+						<option value="4D">4D</option>
+						<option value="5D">5D</option>
+						<option value="6D">6D</option>
+						<option value="1E">1E</option>
+						<option value="2E">2E</option>
+						<option value="3E">3E</option>
+						<option value="4D">4D</option>
+						<option value="5D">5D</option>
+						<option value="6D">6D</option>
+						<option value="1F">1F</option>
+						<option value="2F">2F</option>
+						<option value="3F">3F</option>
+						<option value="4F">4F</option>
+						<option value="5F">5F</option>
+						<option value="6F">6F</option>
+						<option value="1G">1G</option>
+						<option value="2G">2G</option>
+						<option value="3G">3G</option>
+						<option value="4G">4G</option>
+						<option value="5G">5G</option>
+						<option value="6G">6G</option>
+						<option value="1H">1H</option>
+						<option value="2H">2H</option>
+						<option value="3H">3H</option>
+						<option value="4H">4H</option>
+						<option value="5H">5H</option>
+						<option value="6H">6H</option>
+					</select>
+					<div class="divInput">
+						<input type="submit" value="OK">
+					</div>
+					
+					<div class="divSpan">
+						<span th:if="${ErrorMessage}" class="spanMes">Essa reserva está ocupada!</span>
+					</div>
 				</div>
-			</div>
-			
-			<br>
-			
-			<div th:each="res : ${reservaForEach}">
-				<a th:href="@{/pagamento/{codReserva}(codReserva=${res.codReserva})}" class="btn_fazer_pagamento">Confirmar</a>
-			</div>
-		</form>
+				
+				<br>
+				
+				<div th:each="res : ${reservaForEach}">
+					<a th:href="@{/pagamento/{codReserva}(codReserva=${res.codReserva})}" class="btn_fazer_pagamento">Confirmar</a>
+				</div>
+			</form>
+		</main>
 	</body>
 </html>
 
