@@ -48,11 +48,6 @@
 		<input type="date" name="data_volta" th:field="*{dataVolta}">
 		
 		<br><br>
-
-		<!--  <label>Quantidade de passageiro: </label>
-		<input type="number"> 
-		
-		<br><br> -->
 		
 		<input type="submit" value="Procurar" name="btn_procurar_viagem">
 		<div class="div_error_message">
@@ -74,9 +69,6 @@
 					<th></th>
 				</tr>
 			</thead>
-			<!--  <tbody th:if="{!nullable}">
-				<a th:href="@{/reserva}" th:attr="href=@{/reserva}"></a>
-			</tbody>-->
 			<tbody>
 				<tr th:each="reserva : ${reservas}" >
 					<td th:text="${reserva.codReserva}"></td>
@@ -88,7 +80,6 @@
 					<td th:text="${reserva.fkViagem.contemEscala}"></td>
 					<td th:text="${reserva.valorReserva}"></td>
 					<td>
-						<!--<a th:href="@{pagamento/{codReserva}(codReserva=${reserva.codReserva})}" class="btn_agendar">Agendar </a>-->
 						<a th:href="@{assento/{codReserva}(codReserva=${reserva.codReserva})}" class="btn_agendar">Agendar </a>
 					</td>
 				</tr>

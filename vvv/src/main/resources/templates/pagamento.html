@@ -99,54 +99,7 @@
 						</div>
 					</form>
 				</div>
-			</form>
-				
-				<!--  
-				<div th:if="${confirmed}" th:each="card : ${cartao}">
-											
-					<form th:action="@{/compra/{idCartao}(idCartao=${card.idCartao})}" th:object="${pagamento}" method="post">
-						<div>		
-							<label>À vista: </label>
-							<input type="radio" name="tipoPag" value="AVISTA" checked>
-						</div>
-						<div>
-							<label>Parcelado em : </label>
-							<input type="radio" name="tipoPag" value="PARCELA" >
-							
-							<label>Quantidade de parcelas: </label>
-							<input type="number" name="parcela" value="2" min="2" max="12" placeholder="Ex: 10" required>
-						</div>
-						<div>
-							<input type="submit" value="IR">
-						</div>
-					</form>
-				
-
-					<!--  <a th:href="@{/compra/{idCartao}(idCartao=${card.idCartao})}">IR</a> -->
-					
-					<!--  
-					<a th:href="@{/pagamento.html}">Escolher</a>
-					
-					<div th:if="${opcaoSelecionada == 'AVISTA'}">
-						<p>Pagamento à vista confirmado!</p>
-					
-						<a th:href="@{/compra/{idCartao}(idCartao=${card.idCartao})}">IR</a>
-					</div>
-					
-					<div th:if="${opcaoSelecionada == 'PARCELA'}">
-						<p>Pagamento parcelado confirmado!</p>
-					
-						<label>Quantidade de parcelas: </label>
-						<input type="number" name="parcela" min="2" max="12" placeholder="Ex: 10" required>
-						
-						<br>
-						<a th:href="@{/compra/{idCartao}(idCartao=${card.idCartao})}">IR</a>
-					</div>
-					
-				</div>
-			</form>-->
-			
-			
+			</form>	
 		</div>
 	</div>
 </body>

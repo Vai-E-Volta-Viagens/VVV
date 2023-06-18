@@ -25,7 +25,7 @@ import com.vvv.service.ServicePreCadastrado;
 import com.vvv.service.ServiceReserva;
 
 
-// Classe responsável por realizar ajustes e configurações
+//Classe responsável por realizar ajustes e configurações
 public class Configuracao {
 	private static long cod = 1;
 	private static PreCadastrado[] coletor;
@@ -58,87 +58,6 @@ public class Configuracao {
 		reserva.setCodReserva(cod + 4);
 	}
 	
-	public static Set<String> modalSeats(Reserva reserva) {
-		Set<String> set = new LinkedHashSet<String>();
-
-		set.add("1A");
-		set.add("2A");
-		set.add("3A");
-		set.add("4A");
-		set.add("5A");
-		set.add("6A");
-		set.add("1B");
-		set.add("2B");
-		set.add("3B");
-		set.add("4B");
-		set.add("5B");
-		set.add("6B");
-		set.add("1C");
-		set.add("2C");
-		set.add("3C");
-		set.add("4C");
-		set.add("5C");
-		set.add("6C");
-		set.add("1D");
-		set.add("2D");
-		set.add("3D");
-		set.add("4D");
-		set.add("5D");
-		set.add("6D");
-		set.add("1E");
-		set.add("2E");
-		set.add("3E");
-		set.add("4E");
-		set.add("5E");
-		set.add("6E");
-		set.add("1F");
-		set.add("2F");
-		set.add("3F");
-		set.add("4F");
-		set.add("5F");
-		set.add("6F");
-		set.add("1G");
-		set.add("2G");
-		set.add("3G");
-		set.add("4G");
-		set.add("5G");
-		set.add("6G");
-		set.add("1H");
-		set.add("2H");
-		set.add("3H");
-		set.add("4H");
-		set.add("5H");
-		set.add("6H");
-		
-		
-		/*reserva.getPosicaoPoltrona().add("1A");
-		reserva.getPosicaoPoltrona().add("2A");
-		reserva.getPosicaoPoltrona().add("3A");
-		reserva.getPosicaoPoltrona().add("1B");
-		reserva.getPosicaoPoltrona().add("2B");
-		reserva.getPosicaoPoltrona().add("3B");
-		reserva.getPosicaoPoltrona().add("1C");
-		reserva.getPosicaoPoltrona().add("2C");
-		reserva.getPosicaoPoltrona().add("3C");
-		reserva.getPosicaoPoltrona().add("1D");
-		reserva.getPosicaoPoltrona().add("2D");
-		reserva.getPosicaoPoltrona().add("3D");
-		reserva.getPosicaoPoltrona().add("1E");
-		reserva.getPosicaoPoltrona().add("2E");
-		reserva.getPosicaoPoltrona().add("3E");
-		reserva.getPosicaoPoltrona().add("1F");
-		reserva.getPosicaoPoltrona().add("2F");
-		reserva.getPosicaoPoltrona().add("3F");
-		reserva.getPosicaoPoltrona().add("1G");
-		reserva.getPosicaoPoltrona().add("2G");
-		reserva.getPosicaoPoltrona().add("3G");
-		reserva.getPosicaoPoltrona().add("1H");
-		reserva.getPosicaoPoltrona().add("2H");
-		reserva.getPosicaoPoltrona().add("3H");*/
-		
-		return set;
-	}
-	
 	public static Cartao getCartaoForId() {
 		return cartao;
 	}
@@ -152,7 +71,6 @@ public class Configuracao {
 	}
 	
 	public static Double fullAmountCount(PreCadastrado preCadastrado, Passageiro passageiro) {
-	
 		return null;
 	}
 	
@@ -174,12 +92,7 @@ public class Configuracao {
 				coletor[i].setDataDeNascimentoPreCadastrado(dataList.get(i).toString());
 				coletor[i].setFkReserva(reserva);
 			}		
-			
-			/*for(PreCadastrado pc : coletor) {
-				//System.out.println(pc.getNomePreCadastrado());
-				spc.save(pc);
-			}*/
-			
+
 		}catch(Exception e) {
 			key = false;
 			e.printStackTrace();
@@ -228,9 +141,8 @@ public class Configuracao {
 	}
 	
 	public static void GeneratingCodeForTicket(Ticket ticket) { 
-		ticket.setCodTicket(cod + 10);
+		ticket.setCodTicket(cod+=10);
 	}
-	
 	
 	public static PreCadastrado[] RedirectColetor() {
 		return coletor;

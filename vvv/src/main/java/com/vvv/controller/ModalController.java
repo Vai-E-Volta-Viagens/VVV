@@ -1,4 +1,4 @@
-package com.vvv.controller;
+/*package com.vvv.controller;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,4 +34,4 @@ public class ModalController {
 
     }
 
-}
+}*/

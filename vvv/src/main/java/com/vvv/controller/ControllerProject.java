@@ -13,6 +13,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import com.vvv.configuration.Configuracao;
 import com.vvv.model.Alocacao;
@@ -50,7 +51,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-// Classe realizada pelo controle das execuções entre a interface e o back-end
+//Classe realizada pelo controle das execuções entre a interface e o back-end
 @Controller
 public class ControllerProject {
 	public ModelAndView mav;
@@ -104,7 +105,8 @@ public class ControllerProject {
 	// Método responsável por validar o cadastro
 	@PostMapping("/bem-vindo")
 	public String validarLogin(Passageiro passageiro, Viagem viagem, RedirectAttributes ra, Model model) {
-		 this.usuarioLogado = servicePassageiro.findByEmailPassageiroAndSenhaPassageiro(passageiro.getEmailPassageiro(), passageiro.getSenhaPassageiro());		
+		this.usuarioLogado = new Passageiro();
+		 usuarioLogado = servicePassageiro.findByEmailPassageiroAndSenhaPassageiro(passageiro.getEmailPassageiro(), passageiro.getSenhaPassageiro());		
 		
 		if(usuarioLogado !=  null) {
 						
@@ -200,12 +202,6 @@ public class ControllerProject {
 			
 			if(vgm != null) {
 				reservaDisponivel = serviceReserva.findByFkViagem(vgm);
-				//System.out.println(reservaDisponivel);
-				
-				reservaDisponivel.forEach(c -> {
-					serviceReserva.updatePosicaoPoltronaByIdReserva(c.getIdReserva(), Configuracao.modalSeats(c));
-				});
-				
 				
 				model.addAttribute("reservas", reservaDisponivel);
 				
@@ -225,35 +221,44 @@ public class ControllerProject {
 	
 	Reserva reservaSelecionada = null;
 	Set<String> posicaoSelecionada = new LinkedHashSet<String>();
-	
+
 	@GetMapping("/assento/{codReserva}")
 	public String paginaAssento(@PathVariable("codReserva")Long codReserva, Model model) {
+		reservaSelecionada = new Reserva();
 		reservaSelecionada = serviceReserva.findByCodReserva(codReserva).orElseThrow(() -> new IllegalArgumentException("Reserva não encontrada"));
-		//model.addAttribute("assento", reservaSelecionada);
 	
 		model.addAttribute("modal", reservaSelecionada.getFkEmbarque().getFkModal().getTipoModal());
+		try {
+			posicaoSelecionada.forEach(c -> model.addAttribute("assento_".concat(c), "red"));
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		return "assento";
 	}
 	
 	
+	Set<String> posicaoAuxiliar = new LinkedHashSet<>();
 	@PostMapping("/confirmar-assento")
-	public String confirmarAssento(HttpServletRequest request, Model model) {
-		
+	public String confirmarAssento(HttpServletRequest request, Model model) {	
 		model.addAttribute("reservaForEach",reservaSelecionada);
+		
 		
 		model.addAttribute("modal", reservaSelecionada.getFkEmbarque().getFkModal().getTipoModal());
 		posicaoSelecionada.forEach(c -> model.addAttribute("assento_".concat(c), "red"));
 		
 		if(!posicaoSelecionada.contains(request.getParameter("posicao"))) {
 			posicaoSelecionada.add(request.getParameter("posicao"));
-						
+			posicaoAuxiliar.add(request.getParameter("posicao"));		
+			
 			model.addAttribute("assento_".concat(request.getParameter("posicao")), "red");
-			model.addAttribute("ReservasSelecionadas", posicaoSelecionada);
+			model.addAttribute("ReservasSelecionadas", posicaoAuxiliar);
 			
 		}else {
 			
 			model.addAttribute("ErrorMessage", true);
-			model.addAttribute("ReservasSelecionadas", posicaoSelecionada);
+			model.addAttribute("ReservasSelecionadas", posicaoAuxiliar);
 			return "assento";
 		}
 		
@@ -261,14 +266,16 @@ public class ControllerProject {
 	}
 	
 	
+	Viagem viagem = null;
 	Reserva reservaRealizada = null;
 	@GetMapping("/pagamento/{codReserva}")
 	public String paginaPagamento(@PathVariable("codReserva")Long codReserva, Cartao cartao, Model model) {
+		reservaRealizada = new Reserva();
 		reservaRealizada = serviceReserva.findByCodReserva(codReserva).orElseThrow(() -> new IllegalArgumentException("Reserva não encontrada"));
 		
 		model.addAttribute("reserva", reservaRealizada);
-		reservaRealizada.setPosicaoPoltrona(posicaoSelecionada);
 		
+		reservaRealizada.setPosicaoPoltrona(new ArrayList<>(posicaoSelecionada));
 		serviceReserva.save(reservaRealizada);
 		
 		return "pagamento";
@@ -279,13 +286,12 @@ public class ControllerProject {
 	@PostMapping("/pagamento-cartao")
 	public String formaPagamento(Cartao cartao, HttpServletRequest request, Model model) {
 		String parcela = null;
+		pagamento = new Pagamento();
 		model.addAttribute("reserva", reservaRealizada);
 		
 		if(paymentControl == 1) {
 			
-			Cartao c = serviceCartao.findByIdCartao(Configuracao.getCartaoForId().getIdCartao()).get();
-			//serviceCartao.delete(c.getIdCartao());
-		
+			Cartao c = serviceCartao.findByIdCartao(Configuracao.getCartaoForId().getIdCartao()).get();		
 			try {		
 				
 				if(request.getParameter("tipoPag").equalsIgnoreCase("AVISTA")) {
@@ -326,24 +332,13 @@ public class ControllerProject {
 			serviceCartao.save(cartao);
 			Configuracao.setCartaoForId(serviceCartao.findByIdCartao(cartao.getIdCartao()).get());
 		}
-		/*if(paymentControl == 1)
-			this.pagamento.setFkCartao(serviceCartao.findByIdCartao(Configuracao.getCartaoForId().getIdCartao()).get());
-		System.out.println(Configuracao.getCartaoForId());*/
-		/*pagamento.setFkCartao(cartao);
-		
-		serviceCartao.save(cartao);
-		servicePagamento.save(pagamento);*/	
-		
-		//serviceCartao.save(this.cartao);
-		//pagamento.setFkCartao(this.cartao);
-		//servicePagamento.save(pagamento);
 		
 		model.addAttribute("cartao", cartao);
 		model.addAttribute("confirmed", true);
 		
 		if(paymentControl == 0) {
 			paymentControl = 1;
-			
+		
 			return "pagamento";
 			
 		}else {
@@ -355,17 +350,31 @@ public class ControllerProject {
 	
 	
 	Double soma = 0.0, parcela = 0.0;
-	Boolean keyCartao = false, keySave = false;
+	Boolean keyCartao = true, keySave = false, keyPc = true;
 	@GetMapping("/compra/{idCartao}")
 	public String realizarCompra(@PathVariable(name = "idCartao")Long idCartao, Cartao cartao, PreCadastrado preCadastrado, Model model) {
 		this.cartao = serviceCartao.findByIdCartao(idCartao).orElseThrow(() -> new IllegalArgumentException("Cartão não encontrado"));
-		Reserva r = serviceReserva.findById(reservaSelecionada.getIdReserva()).get();
 	
-		model.addAttribute("startNumber", 1);
-		model.addAttribute("endNumber", r.getPosicaoPoltrona().size());		
+		int startNumber = 0, endNumber = 0;
+		if(posicaoAuxiliar.size() != 1) {
+			startNumber = 1;
+			endNumber = posicaoAuxiliar.size();
+			
+			model.addAttribute("notPc", 1);
+			
+		}else {
+			keyPc = false;
+			keyCartao = false;
+			model.addAttribute("notPc", 0);
+			
+			test();
+		}
+		
+		model.addAttribute("startNumber", startNumber);
+		model.addAttribute("endNumber", endNumber);		
 		
 		model.addAttribute("cartao", this.cartao);
-		model.addAttribute("isConfirmed", keyCartao);
+		model.addAttribute("isConfirmed", !keyCartao);
 		
 		DecimalFormat df = new DecimalFormat("#,##0.00");		
 		model.addAttribute("valorTotal", df.format(soma));
@@ -374,7 +383,32 @@ public class ControllerProject {
 		return "compra";
 	}
 	
+	public void test() {
+		soma = Double.valueOf(reservaRealizada.getValorReserva());
+		System.out.println("Sem ninguem: " + soma);
+		if(this.cartao.getTipoCartao().equalsIgnoreCase("CRÉDITO") && Integer.valueOf(this.pagamento.getParcelamento()) > 4) {
+			soma += (Double.valueOf(reservaRealizada.getValorReserva()) * 0.05);
+		}
+		
+		System.out.println("Entrou: "+soma);
+		if((ChronoUnit.YEARS.between(usuarioLogado.getDataDeNascimentoPassageiro(), LocalDate.now()) > 2
+				&& ChronoUnit.YEARS.between(usuarioLogado.getDataDeNascimentoPassageiro(), LocalDate.now()) < 10)
+				&& ChronoUnit.YEARS.between(usuarioLogado.getDataDeNascimentoPassageiro(), LocalDate.now()) > 21)
+				{
+					soma -= (soma * 0.4);
+				}
+		
+		if(this.pagamento.getFormaPagamento().equalsIgnoreCase("PARCELA")) {
+			parcela = (soma / Integer.valueOf(this.pagamento.getParcelamento()));
+		}
+		
+		System.out.println("Sem ninguem: " + soma);
+		System.out.println("Sem ninguem: " + parcela);
+		keySave = true;
+		Configuracao.saveCartaoForCompra(this.cartao, cartao, serviceCartao);
+	}
 	 
+	
 	@PostMapping("/finalizar-compra")
 	public String finalizarCompra(Cartao cartao, PreCadastrado preCadastrado, Model model, HttpServletRequest request) {
 		Cartao c = serviceCartao.findByIdCartao(this.cartao.getIdCartao()).orElseThrow(() -> new IllegalArgumentException("Cartão não encontrado"));
@@ -382,50 +416,60 @@ public class ControllerProject {
 				
 		int keyTicket = 0;
 		
-		String[] cpfArray = preCadastrado.getCpfPreCadastrado().split(",");
+		// logic inverted
+		String [] cpfArray;
+		String [] dataArray;
 		ArrayList<Long> cpfList = new ArrayList<>();
-		
-		String[] dataArray = preCadastrado.getDataDeNascimentoPreCadastrado().split(",");
 		ArrayList<LocalDate> dataList = new ArrayList<>();
+		if(keyPc == true) {
+			cpfArray = preCadastrado.getCpfPreCadastrado().split(",");
+			cpfList = new ArrayList<>();
 		
-		for(String cpfString : cpfArray)
-		{
-			try {
-				Long cpf = Long.valueOf(cpfString.trim());
-				if(cpf > 9999999999L && cpf < 99999999999L) {
-					cpfList.add(cpf);
+		
+			dataArray = preCadastrado.getDataDeNascimentoPreCadastrado().split(",");
+			dataList = new ArrayList<>();
+			
+			for(String cpfString : cpfArray) // CPF Validation
+			{
+				try {
+					Long cpf = Long.valueOf(cpfString.trim());
+					if(cpf > 9999999999L && cpf < 99999999999L) {
+						cpfList.add(cpf);
+						
+					}else {
+						throw new Exception("CPF não identificado");
+					}
 					
-				}else {
-					throw new Exception("CPF não identificado");
+				}catch(Exception e) {
+					e.printStackTrace();
 				}
-				
-			}catch(Exception e) {
-				e.printStackTrace();
 			}
+					
+			for(String dataString : dataArray) { // Birthday Validation
+				try {
+					
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+					dataList.add(LocalDate.parse(dataString, formatter));
+					
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}	
 		}
-				
-		for(String dataString : dataArray) {
-			try {
-				
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-				dataList.add(LocalDate.parse(dataString, formatter));
-				
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}	
+		
+		
+		// [...]
+		
 		
 		if(keySave) {
 			Configuracao.saveCartaoForCompra(c, cartao, serviceCartao);
 		}
 		
-		if(!this.keyCartao) {
+		if(keyCartao) {
 			keySave = Configuracao.savePreCadastrado(preCadastrado, r, cpfList, dataList, servicePreCadastrado);
 		}
 		
-		if(!this.keyCartao) {
-			//keySave = Configuracao.savePreCadastrado(preCadastrado, r, cpfList, dataList, servicePreCadastrado);
-			
+		if(keyCartao) {			
 			soma = Double.valueOf(reservaRealizada.getValorReserva()) * (servicePreCadastrado.getRepositoryPreCadastrado().count()+1);
 			System.out.println("soma: " + soma);
 			
@@ -455,22 +499,25 @@ public class ControllerProject {
 			
 			System.out.println("Parcela: " + parcela);
 			keyTicket = 1;
+		
+		}else {}
+		
+		int startNumber = 0, endNumber = 0;
+		if(posicaoAuxiliar.size() != 1) {
+			startNumber = 1;
+			endNumber = posicaoAuxiliar.size();
+			
+			model.addAttribute("notPc", 1);
+			
+		}else {
+			model.addAttribute("notPc", 0);
 		}
-		
-		
-		model.addAttribute("startNumber", 1);
-		model.addAttribute("endNumber", r.getPosicaoPoltrona().size());	
-		
-		//model.addAttribute("cartao", c);
-		
-		//DecimalFormat df = new DecimalFormat("¤#,##0.00");		
-		//model.addAttribute("valorTotal", df.format(soma));
-		//model.addAttribute("valorParcelado", df.format(parcela));
-		//model.addAttribute("isConfirmed", true);	
-		
+		model.addAttribute("startNumber", startNumber);
+		model.addAttribute("endNumber", endNumber);	
+	
 		
 		if(keySave) {
-			this.keyCartao = true;
+			keyCartao = false;
 		}
 		
 		if(keyTicket == 1) {
@@ -497,7 +544,10 @@ public class ControllerProject {
 			serviceTicket.save(ticket);
 			serviceAlocacao.save(alocacao);
 			
-			Configuracao.saveAlocacao(alocacao, servicePreCadastrado);
+			if(endNumber != 0) {
+				Configuracao.saveAlocacao(alocacao, servicePreCadastrado);
+				keyPc = true;
+			}
 			
 			this.pagamento.setFkAlocacao(alocacao);
 			servicePagamento.save(this.pagamento);
@@ -505,37 +555,55 @@ public class ControllerProject {
 			r.setFkAlocacao(alocacao);
 			serviceReserva.save(r);
 			
-			//model.addAttribute("cartao", c);
-			//model.addAttribute("ticket", ticket);
-			//model.addAttribute("alocacao", alocacao);
-			//List<Object> iter = List.of(c, ticket, alocacao);	
-			//model.addAttribute(iter);
+			posicaoAuxiliar.clear();
+			posicaoSelecionada.clear();
 			
 			return "redirect:/ticket";
 		}
 	}
 	
+
 	
 	@GetMapping("/ticket")
 	public String ticket(Ticket ticket, Model model) {
 		Ticket t = serviceTicket.findByFkPagamento(this.pagamento);
 		
-		PreCadastrado[] pc = Configuracao.RedirectColetor();
-		
-		model.addAttribute("startNumber", 1);
-		model.addAttribute("endNumber", pc.length);
-		
-		ArrayList<String> nomes = new ArrayList<>();
-		ArrayList<String> cpf = new ArrayList<>();
-
-		for(int i = 0; i < pc.length; i++) {
-			nomes.add(pc[i].getNomePreCadastrado() + " " + pc[i].getSobrenomePreCadastrado());
-			cpf.add(pc[i].getCpfPreCadastrado());
+		if(keyPc) {
+			PreCadastrado[] pc = Configuracao.RedirectColetor();
+			
+			model.addAttribute("startNumber", 1);
+			model.addAttribute("endNumber", pc.length);
+			
+			ArrayList<String> nomes = new ArrayList<>();
+			ArrayList<String> cpf = new ArrayList<>();
+	
+			for(int i = 0; i < pc.length; i++) {
+				nomes.add(pc[i].getNomePreCadastrado() + " " + pc[i].getSobrenomePreCadastrado());
+				cpf.add(pc[i].getCpfPreCadastrado());
+			}
+			
+			model.addAttribute("ticket", t);
+			model.addAttribute("nomeConvidado", nomes);
+			model.addAttribute("cpfConvidado", cpf);
+			
+		}else {
+			
+			model.addAttribute("startNumber", 1);
+			model.addAttribute("endNumber", 1);
+			model.addAttribute("ticket", t);
+			model.addAttribute("nomeConvidado", "[]");
+			model.addAttribute("cpfConvidado", "[]");
 		}
 		
-		model.addAttribute("ticket", t);
-		model.addAttribute("nomeConvidado", nomes);
-		model.addAttribute("cpfConvidado", cpf);
+		this.pagamento = null;
+		this.reservaRealizada = null;
+		this.reservaSelecionada = null;
+		
+		soma = 0.0;
+		parcela = 0.0;
+		keyCartao = true;
+		keySave = false;
+		keyPc = true;
 		
 		return "ticket";
 	}

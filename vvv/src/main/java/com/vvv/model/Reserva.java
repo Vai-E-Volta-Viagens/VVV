@@ -1,5 +1,6 @@
 package com.vvv.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import jakarta.persistence.Column;
@@ -53,7 +54,6 @@ public class Reserva {
 	@Column(name = "reservaAerea", nullable = false)
 	private Boolean reservaAerea;
 	
-	// Ficará para ser selecionada depois
-	@Column(name = "posicao_poltrona")
-	private Set<String> posicaoPoltrona;
+	@Column(name = "posicao_poltrona", nullable = true)
+	private ArrayList<String> posicaoPoltrona;
 }
