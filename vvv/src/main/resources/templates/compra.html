@@ -6,14 +6,14 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{/css/reserva.css}" rel="stylesheet">
-    <link th:href="@{/logo/favicon.ico}" rel="icon">
+    <link th:href="@{/css/compra.css}" rel="stylesheet">
+    <link th:href="@{/logo/favicon.ico}" rel="stylesheet">
 	<title>VVV - Compra</title>
 </head>
 <body>
 	<h3>Insira o nome dos seus acompanhantes</h3>
 	
-	<form th:if="${notPc == 1}" action="/realizar-compra" th:object="${preCadastrado}" method="post">
+	<form th:if="${notPc == 1}" action="/finalizar-compra" th:object="${preCadastrado}" method="post">
 		<ul>
 			<li th:each="i : ${#numbers.sequence(startNumber, endNumber)}">
 				<p>Insira o nome dos seus acompanhantes</p>
@@ -61,7 +61,7 @@
 		</div>
 	</form>
 	
-	<form th:if="${notPc == 0 && isConfirmed}" action="/realizar-compra" th:object="${cartao}" method="post">
+	<form th:if="${notPc == 0 && isConfirmed}" action="/finalizar-compra" th:object="${cartao}" method="post">
 		<h3>Finalize seu pagamento!</h3>
 		<p>Preço total: R$ <span th:text="${valorTotal}"></span></p>
 		<p>Preço parcelado: R$ <span th:text="${valorParcelado}"></span></p>

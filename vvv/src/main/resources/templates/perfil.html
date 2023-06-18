@@ -6,8 +6,8 @@
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{/css/reserva.css}" rel="stylesheet">
-    <link th:href="@{/logo/favicon.ico}" rel="icon">
+	<link th:href="@{/css/perfil.css}" rel="stylesheet">	
+    <link th:href="@{/logo/favicon.ico}" rel="stylesheet">
 	<title>VVV - Perfil</title>
 </head>
 <body>
@@ -15,6 +15,7 @@
 	
 		<div class="div_sucess_message">
 			<span class="div_sucess_message" th:if="${Message}">Cadastro Atualizado!</span>
+			<span class="div_error_message" th:if="${Error}">Erro ao realizar o cadastro!</span>
 		</div>
 	
 		<label>CPF: </label>
@@ -63,7 +64,37 @@
 		<br><br>
 		
 		<label>Estado: </label>
-		<input type="text" name="estado" placeholder="Ex: Rio de Janeiro" th:field="*{endereco.fkCidade.fkEstado.nomeEstado}" required>
+		<!-- <input type="text" name="estado" placeholder="Ex: Rio de Janeiro" th:field="*{endereco.fkCidade.fkEstado.nomeEstado}" required> -->
+		<select name="sexo" th:field="*{endereco.fkCidade.fkEstado.nomeEstado}" required>
+			<option value="" disabled selected>UF</option>
+            <option value="Acre">Acre</option>
+            <option value="Alagoas">Alagoas</option>
+            <option value="Amazonas">Amazonas</option>
+           	<option value="Amapá">Amapá</option>
+            <option value="Bahia">Bahia</option>
+            <option value="Ceará">Ceará</option>
+            <option value="Distrito Federal">Distrito Federal</option>
+            <option value="Espírito Santo">Espírito Santo</option>
+            <option value="Goiás">Goiás</option>
+            <option value="Maranhão">Maranhão</option>
+            <option value="Minas Gerais">Minas Gerais</option>
+            <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+            <option value="Mato Grosso">Mato Grosso</option>
+            <option value="Pará">Pará</option>
+            <option value="Paraíba">Paraíba</option>
+            <option value="Pernambuco">Pernambuco</option>
+            <option value="Piauí">Piauí</option>
+            <option value="Paraná">Paraná</option>
+            <option value="Rio de Janeiro">Rio de Janeiro</option>
+            <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+         	<option value="Rondônia">Rondônia</option>
+           	<option value="Roraima">Roraima</option>
+           	<option value="Rio Grande do Sul">Rio Grande do Sul</option>
+            <option value="São Paulo">São Paulo</option>
+            <option value="Santa Catarina">Santa Catarina</option>
+            <option value="Sergipe">Sergipe</option>
+            <option value="Tocantis">Tocantis</option>
+		</select>
 		
 		<br><br>
 		
