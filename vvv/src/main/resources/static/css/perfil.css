@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+:root{
+	--cor-principal:#2F3B69;
+	--cor-complementar:#12172a
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+
+	font-family: 'Open Sans', sans-serif;
+	background-color: #e0e0e0;
+
+}
+
+#mainPerfil {
+	
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
+
+form {
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input[type="submit"] {
+    background-color: var(--cor-principal);
+    color: white;
+    cursor: pointer;
+  }
+  
+  
+  .div_sucess_message {
+    color: rgb(18, 222, 18);
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+   
+  /* Estilo para o botão de voltar */
+  form:nth-child(3) {
+    margin-top: 10px;
+  }
+
+  .img_logo_header{
+	width:60px;
+}
+
+  .header{
+	display:flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: #2F3B69;
+	box-shadow: 1px 1px 4px var(--cor-complementar);
+	height: 56px;
+	justify-content: space-between;
+	padding: 0 10%;
+}
+
+.divbetween{
+  margin-top: 3%;
+  margin-bottom: 3%;
+}

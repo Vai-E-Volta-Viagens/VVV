@@ -352,7 +352,7 @@ public class ControllerProject {
 	Double soma = 0.0, parcela = 0.0;
 	Boolean keyCartao = true, keySave = false, keyPc = true;
 	@GetMapping("/compra/{idCartao}")
-	public String realizarCompra(@PathVariable(name = "idCartao")Long idCartao, Cartao cartao, PreCadastrado preCadastrado, Model model) {
+	public String buscarCompra(@PathVariable(name = "idCartao")Long idCartao, Cartao cartao, PreCadastrado preCadastrado, Model model) {
 		this.cartao = serviceCartao.findByIdCartao(idCartao).orElseThrow(() -> new IllegalArgumentException("Cartão não encontrado"));
 	
 		int startNumber = 0, endNumber = 0;
@@ -409,8 +409,8 @@ public class ControllerProject {
 	}
 	 
 	
-	@PostMapping("/finalizar-compra")
-	public String finalizarCompra(Cartao cartao, PreCadastrado preCadastrado, Model model, HttpServletRequest request) {
+	@PostMapping("/realizar-compra")
+	public String realizarCompra(Cartao cartao, PreCadastrado preCadastrado, Model model, HttpServletRequest request) {
 		Cartao c = serviceCartao.findByIdCartao(this.cartao.getIdCartao()).orElseThrow(() -> new IllegalArgumentException("Cartão não encontrado"));
 		Reserva r = serviceReserva.findById(reservaSelecionada.getIdReserva()).orElseThrow(() -> new IllegalArgumentException("Reserva não encontrada"));
 				
