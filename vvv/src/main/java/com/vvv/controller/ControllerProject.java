@@ -19,6 +19,7 @@ import com.vvv.configuration.Configuracao;
 import com.vvv.model.Alocacao;
 import com.vvv.model.Cartao;
 import com.vvv.model.Embarque;
+import com.vvv.model.Estado;
 import com.vvv.model.Modal;
 import com.vvv.model.Pagamento;
 import com.vvv.model.Passageiro;
@@ -151,7 +152,7 @@ public class ControllerProject {
 	
 	@PostMapping("/perfil")
 	public String updatePerfil(Passageiro passageiro, RedirectAttributes ra) {
-		Passageiro pass = servicePassageiro.findById(usuarioLogado.getIdPassageiro()).get();
+Passageiro pass = servicePassageiro.findById(usuarioLogado.getIdPassageiro()).get();
 		
 		pass.setCpfPassageiro(passageiro.getCpfPassageiro());
 		pass.setTelefonePassageiro(passageiro.getTelefonePassageiro());
@@ -161,14 +162,31 @@ public class ControllerProject {
 		pass.setNacionalidadePassageiro(passageiro.getNacionalidadePassageiro());
 		pass.setSexoPassageiro(passageiro.getSexoPassageiro());
 		
-		serviceEstado.save(passageiro.getEndereco().getFkCidade().getFkEstado());
-		serviceCidade.save(passageiro.getEndereco().getFkCidade());
-		serviceEndereco.save(passageiro.getEndereco());
-		
-		pass.setEndereco(passageiro.getEndereco());
-		
-		Configuracao.addDataInUsuarioLogado(this.usuarioLogado, pass);
-		servicePassageiro.save(pass);
+			try {
+				Estado est = new Estado();
+				est.setNomeEstado(passageiro.getEndereco().getFkCidade().getFkEstado().getNomeEstado());
+				est.setUf(passageiro.getEndereco().getFkCidade().getFkEstado().getUf());
+				passageiro.getEndereco().getFkCidade().setFkEstado(est);
+				
+				System.out.println(passageiro.getEndereco().getFkCidade().getFkEstado().getNomeEstado());
+				System.out.println(passageiro.getEndereco().getFkCidade().getFkEstado().getUf());
+				
+				serviceEstado.save(passageiro.getEndereco().getFkCidade().getFkEstado());
+				serviceCidade.save(passageiro.getEndereco().getFkCidade());
+				serviceEndereco.save(passageiro.getEndereco());
+				
+				pass.setEndereco(passageiro.getEndereco());
+				
+				Configuracao.addDataInUsuarioLogado(this.usuarioLogado, pass);
+				//pass.setEndereco(enderecoSave);
+				servicePassageiro.save(pass);
+					
+		}catch(Exception e) {
+			e.printStackTrace();
+			ra.addFlashAttribute("Error", true);
+			
+			return "redirect:perfil";
+		}
 		
 		ra.addFlashAttribute("Message", true);
 		return "redirect:perfil";
@@ -197,14 +215,20 @@ public class ControllerProject {
 				viagem.setDataVolta(null);	
 			}
 			
+			
+			/*
+			 *  Buscar os dados da viagem no banco de dados e exibir no template reservas.html
+			 *  
+			 * /
+			 */
 			ArrayList<Reserva> reservaDisponivel = new ArrayList<>();
 			Viagem vgm = serviceViagem.findAllByCidadeOrigemAndCidadeDestinoAndDataPartidaAndDataVolta(viagem.getCidadeOrigem(), viagem.getCidadeDestino(), viagem.getDataPartida(), viagem.getDataVolta());
 			
 			if(vgm != null) {
 				reservaDisponivel = serviceReserva.findByFkViagem(vgm);
 				
-				model.addAttribute("reservas", reservaDisponivel);
-				
+				model.addAttribute("reservas", reservaDisponivel); // model responsável por exibir os dados no template enviando para o thymeleaf
+																	// tentar buscar o Modal e exibir o seu tipo, exemplo: Ônibus, Navio...
 				return "reserva";
 				
 			}else {
