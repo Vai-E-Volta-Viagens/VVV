@@ -9,6 +9,7 @@ import com.vvv.model.Viagem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.http.ResponseEntity;
 
 import jakarta.transaction.Transactional;
 
@@ -23,4 +24,10 @@ public interface RepositoryReserva extends JpaRepository<Reserva, Long>{
 	@Modifying
 	@Transactional
 	void updatePosicaoPoltronaByIdReserva(Long id, Set<String> set);
+
+	@Query(nativeQuery = true, value = """
+			SELECT tipo FROM tb_modal_ct
+			WHERE registro = :registro
+			""")
+	String buscarTipoModalPorRegistro(String registro);
 }

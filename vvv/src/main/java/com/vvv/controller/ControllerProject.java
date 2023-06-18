@@ -27,6 +27,7 @@ import com.vvv.model.PreCadastrado;
 import com.vvv.model.Reserva;
 import com.vvv.model.Ticket;
 import com.vvv.model.Viagem;
+import com.vvv.repository.RepositoryReserva;
 import com.vvv.service.ServiceAlocacao;
 import com.vvv.service.ServiceCartao;
 import com.vvv.service.ServiceCidade;
@@ -41,6 +42,8 @@ import com.vvv.service.ServiceReserva;
 import com.vvv.service.ServiceTicket;
 import com.vvv.service.ServiceViagem;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,6 +78,9 @@ public class ControllerProject {
 	private ServiceEmbarque serviceEmbarque;
 	private ServicePagamento servicePagamento;
 	private ServicePreCadastrado servicePreCadastrado;
+
+	@Autowired
+	private RepositoryReserva repositoryReserva;
 	
 	private Pagamento pagamento = new Pagamento();
 	
@@ -228,7 +234,8 @@ Passageiro pass = servicePassageiro.findById(usuarioLogado.getIdPassageiro()).ge
 				reservaDisponivel = serviceReserva.findByFkViagem(vgm);
 				
 				model.addAttribute("reservas", reservaDisponivel); // model responsável por exibir os dados no template enviando para o thymeleaf
-																	// tentar buscar o Modal e exibir o seu tipo, exemplo: Ônibus, Navio...
+				// model.addAttribute("tipoModal", repositoryReserva.buscarTipoModalPorRegistro(/* Aqui dentro você irá passar o registro do modal que será feita a reserva*/));
+				// tentar buscar o Modal e exibir o seu tipo, exemplo: Ônibus, Navio...
 				return "reserva";
 				
 			}else {
@@ -591,44 +598,55 @@ Passageiro pass = servicePassageiro.findById(usuarioLogado.getIdPassageiro()).ge
 	@GetMapping("/ticket")
 	public String ticket(Ticket ticket, Model model) {
 		Ticket t = serviceTicket.findByFkPagamento(this.pagamento);
-		
-		if(keyPc) {
+
+		if (keyPc) {
 			PreCadastrado[] pc = Configuracao.RedirectColetor();
-			
+
 			model.addAttribute("startNumber", 1);
 			model.addAttribute("endNumber", pc.length);
-			
+
 			ArrayList<String> nomes = new ArrayList<>();
 			ArrayList<String> cpf = new ArrayList<>();
-	
-			for(int i = 0; i < pc.length; i++) {
+
+			for (int i = 0; i < pc.length; i++) {
 				nomes.add(pc[i].getNomePreCadastrado() + " " + pc[i].getSobrenomePreCadastrado());
 				cpf.add(pc[i].getCpfPreCadastrado());
 			}
-			
+
 			model.addAttribute("ticket", t);
 			model.addAttribute("nomeConvidado", nomes);
 			model.addAttribute("cpfConvidado", cpf);
-			
-		}else {
-			
+
+		} else {
+
 			model.addAttribute("startNumber", 1);
 			model.addAttribute("endNumber", 1);
 			model.addAttribute("ticket", t);
 			model.addAttribute("nomeConvidado", "[]");
 			model.addAttribute("cpfConvidado", "[]");
 		}
-		
+
 		this.pagamento = null;
 		this.reservaRealizada = null;
 		this.reservaSelecionada = null;
-		
+
 		soma = 0.0;
 		parcela = 0.0;
 		keyCartao = true;
 		keySave = false;
 		keyPc = true;
-		
+
 		return "ticket";
 	}
+
+	// Endpoints teste
+	
+	// @GetMapping("/buscartipomodal/{registro}")
+	// public ResponseEntity<String> buscarTipoModal(@PathVariable("registro") String registro) {
+
+	// 	String tipo = repositoryReserva.buscarTipoModalPorRegistro(registro);
+
+	// 	return ResponseEntity.ok(tipo);
+
+	// }
 }
