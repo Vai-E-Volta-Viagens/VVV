@@ -3,22 +3,23 @@ package com.vvv.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+
 
 @Entity
 @Table(name = "tb_viagem")
@@ -28,7 +29,10 @@ public class Viagem {
 	@Column(name = "id_viagem", unique = true)
 	private Long idViagem;
 	
-	@Column(name = "cidade_origem", nullable = false)
+	@OneToMany(mappedBy = "fkViagem")
+	private List<Reserva> reserva;
+	
+	@Column(name = "cidade_origem", nullable = false) 
 	private String cidadeOrigem;
 	
 	@Column(name = "cidade_destino", nullable = false)
@@ -44,7 +48,7 @@ public class Viagem {
 	private Boolean idaVolta;
 	
 	@Column(name = "tempo_viagem", nullable = true)
-	private Integer tempoViagem;
+	private Integer tempoViagem; 
 	
 	@Column(name = "hora_partida", nullable = false)
 	private LocalTime horaPartida;
@@ -57,26 +61,10 @@ public class Viagem {
 	
 	@Column(name = "data_volta", nullable = false)
 	private LocalDate dataVolta;
-	
+
 	@Column(name = "data_chegada")
 	private LocalDate dataChegada;
 	
-	
-	public Viagem() {}
-	public Viagem(Long idViagem, String cidadeOrigem, String cidadeDestino, ArrayList<String> escala,
-			Boolean contemEscala, Boolean idaVolta, Integer tempoViagem, LocalTime horaPartida, LocalTime horaChegada,
-			LocalDate dataPartida, LocalDate dataVolta, LocalDate dataChegada) {
-		this.idViagem = idViagem;
-		this.cidadeOrigem = cidadeOrigem;
-		this.cidadeDestino = cidadeDestino;
-		this.escala = escala;
-		this.contemEscala = contemEscala;
-		this.idaVolta = idaVolta;
-		this.tempoViagem = tempoViagem;
-		this.horaPartida = horaPartida;
-		this.horaChegada = horaChegada;
-		this.dataPartida = dataPartida;
-		this.dataVolta = dataVolta;
-		this.dataChegada = dataChegada;
-	}
+	@Column(name = "quant_passageiro", length = 35, nullable = false)
+	private Integer quantPassageiro;
 }

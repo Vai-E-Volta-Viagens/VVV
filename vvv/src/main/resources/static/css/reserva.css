@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+:root{
+	--cor-principal:#2F3B69;
+	--cor-complementar:#12172a;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;	
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	background-image: url("https://wallpaperaccess.com/full/488392.jpg");
+	background-size: auto;
+}
+
+
+#mainReserva {
+	height: 92vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
+
+.btn_entrar{
+	font-size: 1.25rem;
+	background: var(--cor-principal);
+	color: white;
+	padding: 0.7em 1em;
+	padding-left: 0.9em;
+	margin-top: 5%;
+	display: flex;
+	align-items: center;
+	border: none;
+	border-radius: 16px;
+	overflow: hidden;
+	transition: all 0.2s;
+	cursor: pointer;
+}
+
+.divSearch{
+	border: 1px solid var(--cor-principal);
+	border-radius: 10px;
+	background-color:whitesmoke ;
+	margin-bottom: 5%;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.img_logo_header{
+	width:60px;
+}
+
+.header{
+	display:flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: #2F3B69;
+	box-shadow: 1px 1px 4px var(--cor-complementar);
+	height: 56px;
+	justify-content: space-between;
+	padding: 0 10%;
+}
+
+.divTitulo{
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.divMessage{
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.divButtom{
+	margin-top: 2%;
+	margin-bottom: 2%;
+	display: flex;
+    justify-content: center;
+}
+
+.text{
+	font-size: 24px;
+	margin-bottom: 10px;
+	margin-top: 2%;
+}
+
+#pMes{
+	margin-top: -8%;
+	font-size: 20px;
+}
+
+#mainLogin {
+
+	Width: 56vw;
+	Height: 51vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--cor-principal);
+	border-radius: 10px;
+
+}
+
+.formMes{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.formSearch{
+	Width: 55vw;
+    Height: 25vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+	align-content: space-around;
+}
+
+.btn_procurar{
+	font-size: 14px;
+	background: var(--cor-principal);
+	color: white;
+	padding: 0.7em 1em;
+	padding-left: 0.9em;
+	border: none;
+	border-radius: 16px;
+	overflow: hidden;
+	transition: all 0.2s;
+	cursor: pointer;
+}
+
+    
+  label {
+	font-size: 16px;
+	margin-right: 10px;
+  }
+  
+  input[type="text"],
+  input[type="date"] {
+	padding: 8px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	width: 200px;
+	margin-bottom: 10px;
+  }
+  
+  input[type="radio"] {
+	margin-right: 5px;
+  }
+  
+  input[type="submit"] {
+	padding: 10px 20px;
+	font-size: 16px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+  }
+  
+  .div_error_message {
+	margin-top: 20px;
+  }
+  
+  .error_message {
+	color: red;
+  }
+  
+  table{
+	background-color:#fafafa;
+	width: 100%;
+	border-collapse: collapse;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+	text-align: center;
+  }
+
+
+  th, td {
+	padding: 10px 15px;
+	text-align: center;
+  }
+  
+  th {
+	background-color: #692f3b;
+	font-weight: bold;
+	color: whitesmoke;
+	
+  }
+
+  tr:nth-child(even){
+	background-color: #eeeeee;
+  }
+  
+  .btn_agendar {
+	padding: 5px 10px;
+	font-size: 14px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	
+  }
+
+  

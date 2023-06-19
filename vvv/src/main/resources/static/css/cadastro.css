@@ -2,7 +2,7 @@
 
 :root {
 
-	--cor-principal: #8c9cf3;
+	--cor-principal:#2F3B69;
 	--cor-social-icons: #7f8c8d;
 
 }
@@ -58,7 +58,7 @@ body {
 
 .divCad {
 
-	margin-top: 5%;
+	margin-top: 8%;
 	margin-bottom: 5%;
 
 }
@@ -91,10 +91,6 @@ body {
 
 	width: 100%;
 	height: 35%;
-	/* Zoom na Logo */
-	-moz-transform: scale(1.9);
-  	-webkit-transform: scale(1.9);
-  	transform: scale(1.9);
 
 }
 
@@ -698,12 +694,10 @@ form {
 	
 	#logo {
 
-	width: 60%;
-	height: 35%;
-	-moz-transform: scale(1.9);
-  	-webkit-transform: scale(1.9);
-  	transform: scale(1.9);
-
+		width: 53%;
+		height: 37%;
+		margin-top: 5%;
+	
 	}
 	
 	.btnCad {
