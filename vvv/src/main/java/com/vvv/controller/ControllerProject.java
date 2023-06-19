@@ -19,6 +19,7 @@ import com.vvv.configuration.Configuracao;
 import com.vvv.model.Alocacao;
 import com.vvv.model.Cartao;
 import com.vvv.model.Embarque;
+import com.vvv.model.Estado;
 import com.vvv.model.Modal;
 import com.vvv.model.Pagamento;
 import com.vvv.model.Passageiro;
@@ -26,6 +27,7 @@ import com.vvv.model.PreCadastrado;
 import com.vvv.model.Reserva;
 import com.vvv.model.Ticket;
 import com.vvv.model.Viagem;
+import com.vvv.repository.RepositoryReserva;
 import com.vvv.service.ServiceAlocacao;
 import com.vvv.service.ServiceCartao;
 import com.vvv.service.ServiceCidade;
@@ -40,6 +42,8 @@ import com.vvv.service.ServiceReserva;
 import com.vvv.service.ServiceTicket;
 import com.vvv.service.ServiceViagem;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -74,6 +78,9 @@ public class ControllerProject {
 	private ServiceEmbarque serviceEmbarque;
 	private ServicePagamento servicePagamento;
 	private ServicePreCadastrado servicePreCadastrado;
+
+	@Autowired
+	private RepositoryReserva repositoryReserva;
 	
 	private Pagamento pagamento = new Pagamento();
 	
@@ -151,7 +158,7 @@ public class ControllerProject {
 	
 	@PostMapping("/perfil")
 	public String updatePerfil(Passageiro passageiro, RedirectAttributes ra) {
-		Passageiro pass = servicePassageiro.findById(usuarioLogado.getIdPassageiro()).get();
+Passageiro pass = servicePassageiro.findById(usuarioLogado.getIdPassageiro()).get();
 		
 		pass.setCpfPassageiro(passageiro.getCpfPassageiro());
 		pass.setTelefonePassageiro(passageiro.getTelefonePassageiro());
@@ -161,14 +168,31 @@ public class ControllerProject {
 		pass.setNacionalidadePassageiro(passageiro.getNacionalidadePassageiro());
 		pass.setSexoPassageiro(passageiro.getSexoPassageiro());
 		
-		serviceEstado.save(passageiro.getEndereco().getFkCidade().getFkEstado());
-		serviceCidade.save(passageiro.getEndereco().getFkCidade());
-		serviceEndereco.save(passageiro.getEndereco());
-		
-		pass.setEndereco(passageiro.getEndereco());
-		
-		Configuracao.addDataInUsuarioLogado(this.usuarioLogado, pass);
-		servicePassageiro.save(pass);
+			try {
+				Estado est = new Estado();
+				est.setNomeEstado(passageiro.getEndereco().getFkCidade().getFkEstado().getNomeEstado());
+				est.setUf(passageiro.getEndereco().getFkCidade().getFkEstado().getUf());
+				passageiro.getEndereco().getFkCidade().setFkEstado(est);
+				
+				System.out.println(passageiro.getEndereco().getFkCidade().getFkEstado().getNomeEstado());
+				System.out.println(passageiro.getEndereco().getFkCidade().getFkEstado().getUf());
+				
+				serviceEstado.save(passageiro.getEndereco().getFkCidade().getFkEstado());
+				serviceCidade.save(passageiro.getEndereco().getFkCidade());
+				serviceEndereco.save(passageiro.getEndereco());
+				
+				pass.setEndereco(passageiro.getEndereco());
+				
+				Configuracao.addDataInUsuarioLogado(this.usuarioLogado, pass);
+				//pass.setEndereco(enderecoSave);
+				servicePassageiro.save(pass);
+					
+		}catch(Exception e) {
+			e.printStackTrace();
+			ra.addFlashAttribute("Error", true);
+			
+			return "redirect:perfil";
+		}
 		
 		ra.addFlashAttribute("Message", true);
 		return "redirect:perfil";
@@ -197,14 +221,21 @@ public class ControllerProject {
 				viagem.setDataVolta(null);	
 			}
 			
+			
+			/*
+			 *  Buscar os dados da viagem no banco de dados e exibir no template reservas.html
+			 *  
+			 * /
+			 */
 			ArrayList<Reserva> reservaDisponivel = new ArrayList<>();
 			Viagem vgm = serviceViagem.findAllByCidadeOrigemAndCidadeDestinoAndDataPartidaAndDataVolta(viagem.getCidadeOrigem(), viagem.getCidadeDestino(), viagem.getDataPartida(), viagem.getDataVolta());
 			
 			if(vgm != null) {
 				reservaDisponivel = serviceReserva.findByFkViagem(vgm);
 				
-				model.addAttribute("reservas", reservaDisponivel);
-				
+				model.addAttribute("reservas", reservaDisponivel); // model responsável por exibir os dados no template enviando para o thymeleaf
+				// model.addAttribute("tipoModal", repositoryReserva.buscarTipoModalPorRegistro(/* Aqui dentro você irá passar o registro do modal que será feita a reserva*/));
+				// tentar buscar o Modal e exibir o seu tipo, exemplo: Ônibus, Navio...
 				return "reserva";
 				
 			}else {
@@ -352,7 +383,7 @@ public class ControllerProject {
 	Double soma = 0.0, parcela = 0.0;
 	Boolean keyCartao = true, keySave = false, keyPc = true;
 	@GetMapping("/compra/{idCartao}")
-	public String realizarCompra(@PathVariable(name = "idCartao")Long idCartao, Cartao cartao, PreCadastrado preCadastrado, Model model) {
+	public String buscarCompra(@PathVariable(name = "idCartao")Long idCartao, Cartao cartao, PreCadastrado preCadastrado, Model model) {
 		this.cartao = serviceCartao.findByIdCartao(idCartao).orElseThrow(() -> new IllegalArgumentException("Cartão não encontrado"));
 	
 		int startNumber = 0, endNumber = 0;
@@ -409,8 +440,8 @@ public class ControllerProject {
 	}
 	 
 	
-	@PostMapping("/finalizar-compra")
-	public String finalizarCompra(Cartao cartao, PreCadastrado preCadastrado, Model model, HttpServletRequest request) {
+	@PostMapping("/realizar-compra")
+	public String realizarCompra(Cartao cartao, PreCadastrado preCadastrado, Model model, HttpServletRequest request) {
 		Cartao c = serviceCartao.findByIdCartao(this.cartao.getIdCartao()).orElseThrow(() -> new IllegalArgumentException("Cartão não encontrado"));
 		Reserva r = serviceReserva.findById(reservaSelecionada.getIdReserva()).orElseThrow(() -> new IllegalArgumentException("Reserva não encontrada"));
 				
@@ -567,44 +598,55 @@ public class ControllerProject {
 	@GetMapping("/ticket")
 	public String ticket(Ticket ticket, Model model) {
 		Ticket t = serviceTicket.findByFkPagamento(this.pagamento);
-		
-		if(keyPc) {
+
+		if (keyPc) {
 			PreCadastrado[] pc = Configuracao.RedirectColetor();
-			
+
 			model.addAttribute("startNumber", 1);
 			model.addAttribute("endNumber", pc.length);
-			
+
 			ArrayList<String> nomes = new ArrayList<>();
 			ArrayList<String> cpf = new ArrayList<>();
-	
-			for(int i = 0; i < pc.length; i++) {
+
+			for (int i = 0; i < pc.length; i++) {
 				nomes.add(pc[i].getNomePreCadastrado() + " " + pc[i].getSobrenomePreCadastrado());
 				cpf.add(pc[i].getCpfPreCadastrado());
 			}
-			
+
 			model.addAttribute("ticket", t);
 			model.addAttribute("nomeConvidado", nomes);
 			model.addAttribute("cpfConvidado", cpf);
-			
-		}else {
-			
+
+		} else {
+
 			model.addAttribute("startNumber", 1);
 			model.addAttribute("endNumber", 1);
 			model.addAttribute("ticket", t);
 			model.addAttribute("nomeConvidado", "[]");
 			model.addAttribute("cpfConvidado", "[]");
 		}
-		
+
 		this.pagamento = null;
 		this.reservaRealizada = null;
 		this.reservaSelecionada = null;
-		
+
 		soma = 0.0;
 		parcela = 0.0;
 		keyCartao = true;
 		keySave = false;
 		keyPc = true;
-		
+
 		return "ticket";
 	}
+
+	// Endpoints teste
+	
+	// @GetMapping("/buscartipomodal/{registro}")
+	// public ResponseEntity<String> buscarTipoModal(@PathVariable("registro") String registro) {
+
+	// 	String tipo = repositoryReserva.buscarTipoModalPorRegistro(registro);
+
+	// 	return ResponseEntity.ok(tipo);
+
+	// }
 }
