@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+:root{
+	--cor-principal:#2F3B69;
+	--cor-complementar:#12172a;
+	--cor-complementar2:#692f3b;
+	--cor-complementar3:#8c3f4f;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;	
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	background: hsla(265, 53%, 29%, 1);
+
+background: linear-gradient(90deg, hsla(265, 53%, 29%, 1) 0%, hsla(24, 93%, 73%, 1) 100%);
+
+background: -moz-linear-gradient(90deg, hsla(265, 53%, 29%, 1) 0%, hsla(24, 93%, 73%, 1) 100%);
+
+background: -webkit-linear-gradient(90deg, hsla(265, 53%, 29%, 1) 0%, hsla(24, 93%, 73%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#432371", endColorstr="#FAAE7B", GradientType=1 );
+}
+
+.img_logo_header{
+	width:60px;
+}
+
+.header{
+	display:flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: #2F3B69;
+	box-shadow: 1px 1px 4px var(--cor-complementar);
+	height: 56px;
+	justify-content: space-between;
+	padding: 0 10%;
+}
+
+h1{
+	color:#12172a;
+}
+
+#mainTicket{
+    height: 92vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+table{
+	border: 2px solid var(--cor-complementar);
+	border-radius: 2px;
+	background-color:#fafafa;
+	width: 100%;
+	border-collapse: collapse;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+	text-align: center;
+  }
+
+  th, td {
+	padding: 5px 5px;
+	text-align: center;
+  }
+  
+  tr:nth-child(even){
+	background-color: #eeeeee;
+  }
+
+  input[type="submit"] {
+	font-size: 1.25rem;
+	background: var(--cor-complementar);
+	color: white;
+	padding: 0.7em 1em;
+	padding-left: 0.9em;
+	margin-top: 5%;
+	display: flex;
+	align-items: center;
+	border: none;
+	border-radius: 6px;
+	overflow: hidden;
+	transition: all 0.2s;
+	cursor: pointer;
+
+  }

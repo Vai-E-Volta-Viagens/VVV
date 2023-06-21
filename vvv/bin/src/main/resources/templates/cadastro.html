@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/cadastro.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <title>VVV - Cadastre-se</title>
+</head>
+<body>
+    
+    <!-- Form da tela de Cadastro -->
+    <main id="mainLogin">
+
+		<!-- Tela de introdução do Form de cadastro -->
+        <div class="divForm formCad">
+            <img src="./logo/logo-editor.svg" alt="Vai & Volta Viagens" id="logo"> 
+            <div class="divTitle divCad">
+                <h1 class="titleForm titleCad">FAÇA O LOGIN</h1>
+                <p id="pCad">Para manter-se conectado conosco, por favor, faça o login com sua conta pessoal.</p>
+            </div>
+            <form action="/login" method="get">
+	            <button type="submit" class="btn btnCad" onclick="window.location.href = 'login.html'">
+	                <div class="wrapper">
+	                    <i class="bi bi-send"></i>
+	                </div>
+	                <span>Entrar</span>
+	            </button>
+            </form>
+        </div>
+        
+        <!-- Tela de envio de dados do cadastro para o back-end -->
+        <div class="divForm formLog">
+            <div class="divTitle divLog">
+                <h1 class="titleForm titleLog">CADASTRE-SE</h1>
+            </div>
+            <form action="/realizar-cadastro" class="form" th:object="${passageiro}" method="post">
+
+                <div id="socialLogin">
+                    <i class="bi bi-facebook"></i>
+                    <i class="bi bi-google"></i>
+                    <i class="bi bi-linkedin"></i>
+                </div>
+                
+                <div id="dados">
+                    <div class="auxDados auxDadosP">
+
+						<!-- Entrada do email -->
+                        <label class="label-input" for="">
+                            <i class="far fa-envelope icon-modify"></i>
+                            <input type="email" placeholder="Email" name="email" th:field="*{emailPassageiro}" required>
+                        </label>
+                        
+                        <!-- Entrada do primeiro nome do passageiro -->
+                        <label class="label-input" for="">
+                            <i class="fas fa-file-signature icon-modify"></i>
+                            <input type="text" placeholder="Primeiro Nome" name="pNome" th:field="*{primeiroNomePassageiro}" required>
+                        </label>
+                        
+                        <!-- Entrada do sobrenome do passageiro -->
+                        <label class="label-input" for="">
+                            <i class="fas fa-file-signature icon-modify"></i>
+                            <input type="text" placeholder="Sobrenome" name="sobrenome" th:field="*{sobrenomePassageiro}" required>
+                        </label>
+                        
+                        <!-- Entrada da senha -->
+                        <label class="label-input" for="">
+                            <i class="fas fa-lock icon-modify"></i>
+                            <input type="password" placeholder="Senha" name="senha" th:field="*{senhaPassageiro}" required>
+                        </label>
+                        <!--
+                        <label class="label-input" for="">
+                            <i class="fas fa-address-card icon-modify"></i>
+                            <input type="identidade" placeholder="Identidade" name="rg">
+                        </label>
+
+                        <label class="label-input" for="">
+                            <i class="fas fa-address-card icon-modify"></i>
+                            <input type="cpf" placeholder="CPF" name="cpf">
+                        </label>
+
+                        <label class="label-input" for="">
+                            <i class="fas fa-address-card icon-modify"></i>
+                            <input type="nacionalidade" placeholder="Nacionalidade" name="nacionalidade">
+                        </label>
+                        -->
+
+                    </div>
+                    <!--
+                    <div class="auxDados auxDadosS">
+
+                        <label class="label-input" for="">
+                            <i class="fas fa-calendar icon-modify"></i>
+                            <input type="date" placeholder="Data de Nascimento" name="dataNascimento">
+                        </label>
+
+                        <label class="label-input" for="">
+                            <i class="fas fa-user icon-modify"></i>
+                            <select name="sexo" id="sexo">
+                                <option value="" disabled selected>Selecione o seu sexo</option>
+                                <option value="homem">Sou um homem</option>
+                                <option value="mulher">Sou uma mulher</option>
+                                <option value="não-binária">Sou uma pessoa não-binária</option>
+                                <option value="">Prefiro não dizer</option>
+                            </select>
+                        </label>
+
+                        <label class="label-input" for="">
+                            <i class="fas fa-location-arrow icon-modify"></i>
+                            <input type="number" placeholder="CEP" name="cep">
+                        </label>
+                        
+                        <label class="label-input" for="">
+                            <i class="fas fa-city icon-modify"></i>
+                            <input type="estado" placeholder="Estado" name="estado">
+                        </label>
+
+                        <label class="label-input" for="">
+                            <i class="fas fa-city icon-modify"></i>
+                            <input type="endereco" placeholder="Endereço" name="cidade">
+                        </label>
+
+                        <label class="label-input" for="">
+                            <i class="fas fa-city icon-modify"></i>
+                            <select name="uf" id="uf">
+                                <option value="" disabled selected>UF</option>
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AM">AM</option>
+                                <option value="AP">AP</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MG">MG</option>
+                                <option value="MS">MS</option>
+                                <option value="MT">MT</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="PR">PR</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="RS">RS</option>
+                                <option value="SP">SP</option>
+                                <option value="SC">SC</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </label>
+
+                        <label class="label-input" for="">
+                            <i class="fas fa-phone icon-modify"></i>
+                            <input type="tel" placeholder="Telefone" name="telefone">
+                        </label>
+                    </div>
+                </div>
+                -->
+
+				<!-- Enviar os dados para o banco de dados -->
+                <button type="submit" class="btn btnEntrar">
+                    <div class="wrapper">
+                        <i class="bi bi-send"></i>
+                    </div>
+                    <span>Cadastre-se</span>
+                </button>
+                
+                <!-- Mensagem de erro em caso de cadastro inválido -->
+               
+                <div class="div_error_message">
+                	<span class="error_message" th:if="${ExistingRegistration}"
+                	style="margin-top: 1px; margin-left: 5px; margin-right: 5px; font-size: 10px; 
+                	padding: 0; box-sizing: border-box; color: red;"
+                	>Este email já está cadastrado em nosso sistema!</span>
+                </div>
+
+            </form>
+        </div>
+
+    </main>
+
+</body>
+</html>

@@ -12,10 +12,6 @@ public class ServiceViagem {
 	@Autowired
 	private RepositoryViagem repositoryViagem;
 	
-	public Viagem save(Viagem viagem) {
-		return repositoryViagem.save(viagem);
-	}
-	
 	public Optional<Viagem> findById(Long id){
 		return repositoryViagem.findById(id);
 	}

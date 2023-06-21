@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Insert title here</title>
+</head>
+<body>
+	<form action="/perfil" th:object="${passageiro}" method="post">
+	
+		<div class="div_sucess_message">
+			<span class="div_sucess_message" th:if="${Message}">Cadastro Atualizado!</span>
+		</div>
+	
+		<label>CPF: </label>
+		<input type="number" name="cpf" placeholder="CPF" min="9999999999" max="99999999999" th:field="*{cpfPassageiro}" required>
+		
+		<br><br>
+		
+		<label>RG: </label>
+		<input type="number" name="rg" placeholder="RG" size="99999999" max="999999999" th:field="*{rgPassageiro}" required>
+		
+		<br><br>
+			
+		<label>Data de nascimento: </label>
+		<input type="date" name="dataNascimento" th:field="*{dataDeNascimentoPassageiro}" required>
+		
+		<br><br>
+		
+		<label>Telefone</label>
+		<input type="tel" name="telefone" placeholder="Ex: 21987654321" th:field="*{telefonePassageiro}" required>
+		
+		<br><br>
+		
+		<label>Nacionalidade: </label>
+		<input type="text" name="nacionalidade" placeholder="Ex: Brasileiro" th:field="*{nacionalidadePassageiro}" required>
+		
+		<br><br>
+		
+		<label>Sexo: </label>
+		<select name="sexo" th:field="*{sexoPassageiro}" required>
+			<option value="" disabled selected></option>
+			<option value="Masculino">Masculino</option>
+			<option value="Feminino">Feminino</option>
+			<option value="Outros">Outros</option>
+		</select>
+		
+		<br><br>
+		
+		<label>Profissão: </label>
+		<input type="text" name="profissao" placeholder="Profissão" th:field="*{profissaoPassageiro}" required>
+		
+		<br><br>
+		
+		<label>Cidade: </label>
+		<input type="text" name="cidade" placeholder="Ex: Niterói" th:field="*{endereco.cidade.nomeCidade}" required>
+		
+		<br><br>
+		
+		<label>Estado: </label>
+		<input type="text" name="estado" placeholder="Ex: Rio de Janeiro" th:field="*{endereco.cidade.estado.nomeEstado}" required>
+		
+		<br><br>
+		
+		<label>UF: </label>
+		<select name="uf" th:field="*{endereco.cidade.estado.uf}" required>
+			<option value="" disabled selected></option>
+			<option value="AC">AC</option>
+	        <option value="AL">AL</option>
+	        <option value="AM">AM</option>
+	        <option value="AP">AP</option>
+	       	<option value="BA">BA</option>
+	       	<option value="CE">CE</option>
+	        <option value="DF">DF</option>
+	      	<option value="ES">ES</option>
+	        <option value="GO">GO</option>
+	      	<option value="MA">MA</option>
+	       	<option value="MG">MG</option>
+	        <option value="MS">MS</option>
+	        <option value="MT">MT</option>
+	        <option value="PA">PA</option>
+	        <option value="PB">PB</option>
+	        <option value="PE">PE</option>
+	        <option value="PI">PI</option>
+	       	<option value="PR">PR</option>
+	        <option value="RJ">RJ</option>
+	        <option value="RN">RN</option>
+	        <option value="RO">RO</option>
+	        <option value="RR">RR</option>
+	     	<option value="RS">RS</option>
+	        <option value="SP">SP</option>
+	        <option value="SC">SC</option>
+	       	<option value="SE">SE</option>
+	      	<option value="TO">TO</option>
+		</select>
+		
+		<br><br>
+		
+		<label>CEP: </label>
+		<input type="number" name="cep" placeholder="CEP" min="9999999" max="99999999" th:field="*{endereco.cep}" required>
+		
+		<br><br>
+		
+		<label>Rua: </label>
+		<input type="text" name="rua" placeholder="Ex: Rua do Cefet" th:field="*{endereco.rua}" required>
+		
+		<br><br>
+		
+		<label>Número: </label>
+		<input type="text" name="numero" placeholder="Número" th:field="*{endereco.numero}">
+		
+		<br><br>
+		
+		<label>Complemento: </label>
+		<input type="text" name="complemento" placeholder="Complemento" th:field="*{endereco.complemento}">
+		
+		<br><br>
+		
+		<input type="submit" value="Atualizar">
+	</form>
+	<form action="/bem-vindo" method="get">
+		<input type="submit" value="Voltar">
+	</form>
+	
+</body>
+</html>

@@ -1,0 +1,26 @@
+.assento {
+	width: 40px;
+	height: 40px;
+	margin: 5px;
+	text-align: center;
+	line-height: 40px;
+	border: 1px solid #ccc;
+	display: inline-block;
+	cursor: pointer;
+	      	
+	color: white;
+	background-color: blue;
+}
+    	
+.assento_esquerda{
+ 	margin-right: 30px;
+}
+    	
+.assento_meio{
+	margin-right: 15px;
+    margin-left: 15px;
+}
+    	
+.assento_direita{
+    margin-left: 30px;
+}
